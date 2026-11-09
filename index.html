@@ -3,22 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SHELBY MUSTANG GT500 | Pure Unapologetic Power</title>
-  <meta name="description" content="Experience the Shelby Mustang GT500 Predator. 760 HP Supercharged 5.2L V8 with three interactive visual motion graphics: Aerodynamic Wind Tunnel, Powertrain Dyno, and MagneRide Chassis Telemetry.">
+  <title>SHELBY MUSTANG GT500 | 3D Hyper-Muscle Experience</title>
+  <meta name="description" content="Experience the real 3D Shelby Mustang GT500 Predator. 760 HP Supercharged V8 with three interactive 3D visual motion graphics: Aerodynamic Wind Tunnel, Powertrain Dyno, and MagneRide Chassis Telemetry.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+
+  <!-- Three.js ESM Module Map -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
 </head>
 <body class="theme-obsidian">
-  <!-- Audio Status Ribbon & Ambient Particle Layer -->
+  <!-- Subtle ambient noise & carbon texture overlays -->
   <div id="noise-overlay" class="noise-overlay"></div>
   <div class="carbon-texture"></div>
 
-  <!-- Global Header / Navigation -->
+  <!-- Global Apple-Tier Header -->
   <header class="luxury-nav" id="main-nav">
     <div class="nav-container">
-      <a href="#hero" class="brand-crest">
+      <a href="#" class="brand-crest" id="nav-brand-logo">
         <svg class="cobra-svg-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M50 8C38 8 28 16 28 28C28 36 34 42 38 48C42 54 44 60 44 68C44 76 38 82 30 84C26 85 24 88 26 91C28 94 32 94 36 93C48 90 56 82 56 70C56 62 52 56 48 50C44 44 40 38 40 30C40 22 46 16 52 16C58 16 64 22 64 30C64 36 60 42 56 46C53 49 53 53 56 55C59 57 63 56 66 52C72 45 76 38 76 28C76 16 64 8 50 8Z" fill="url(#silver-sheen)"/>
           <path d="M46 22C46 24 48 26 50 26C52 26 54 24 54 22C54 20 52 18 50 18C48 18 46 20 46 22Z" fill="#DC2626"/>
@@ -36,16 +46,17 @@
         </svg>
         <div class="brand-text">
           <span class="brand-title">SHELBY</span>
-          <span class="brand-subtitle">AMERICAN • GT500</span>
+          <span class="brand-subtitle">AMERICAN • GT500 3D</span>
         </div>
       </a>
 
+      <!-- Motion Mode Links (Clicking moves 3D camera & transitions scene) -->
       <nav class="nav-links">
-        <a href="#aero-motion" class="nav-item"><span class="nav-num">01</span> Aero Dynamics</a>
-        <a href="#powertrain-motion" class="nav-item"><span class="nav-num">02</span> Predator V8</a>
-        <a href="#chassis-motion" class="nav-item"><span class="nav-num">03</span> MagneRide G-Force</a>
-        <a href="#configurator" class="nav-item"><span class="nav-num">04</span> Studio Bespoke</a>
-        <a href="#heritage" class="nav-item"><span class="nav-num">05</span> CS Heritage</a>
+        <button class="nav-mode-btn active" data-mode="hero"><span class="nav-num">00</span> 3D Studio</button>
+        <button class="nav-mode-btn" data-mode="aero"><span class="nav-num">01</span> 3D Aero Wind Tunnel</button>
+        <button class="nav-mode-btn" data-mode="powertrain"><span class="nav-num">02</span> 3D V8 Dyno</button>
+        <button class="nav-mode-btn" data-mode="chassis"><span class="nav-num">03</span> 3D MagneRide</button>
+        <button class="nav-mode-btn" data-mode="configurator"><span class="nav-num">04</span> Bespoke 3D Spec</button>
       </nav>
 
       <div class="nav-actions">
@@ -58,538 +69,380 @@
           </span>
           <span id="audio-label" class="audio-label">SOUND: MUTED</span>
         </button>
-        <a href="#configurator" class="btn-primary-luxury">RESERVE CHASSIS</a>
+        <button class="btn-primary-luxury" id="nav-reserve-btn">RESERVE CHASSIS</button>
       </div>
     </div>
   </header>
 
-  <!-- HERO SECTION -->
-  <section class="hero-section" id="hero">
-    <div class="le-mans-stripes-hero"></div>
-    <div class="hero-glow-radial"></div>
-
-    <div class="hero-content-wrapper">
-      <div class="hero-badge-tag">
-        <span class="badge-dot"></span>
-        <span>THE APEX AMERICAN HYPER-MUSCLE MACHINE</span>
-      </div>
-
-      <h1 class="hero-title">
-        <span class="hero-title-light">SHELBY MUSTANG</span>
-        <span class="hero-title-bold gradient-chrome">GT500 PREDATOR</span>
-      </h1>
-
-      <p class="hero-description">
-        Forged with a 760-horsepower hand-built supercharged cross-plane V8, 1,000Hz MagneRide damping, 
-        and race-proven carbon-aero. Three interactive visual motion engines below showcase the physics of pure American violence.
-      </p>
-
-      <!-- Vital Statistics Grid -->
-      <div class="hero-stats-band">
-        <div class="stat-card">
-          <div class="stat-value">760 <span class="stat-unit">BHP</span></div>
-          <div class="stat-label">Hand-Built 5.2L Supercharged V8</div>
-        </div>
-        <div class="stat-divider"></div>
-        <div class="stat-card">
-          <div class="stat-value">625 <span class="stat-unit">LB-FT</span></div>
-          <div class="stat-label">Instant Torque @ 5,000 RPM</div>
-        </div>
-        <div class="stat-divider"></div>
-        <div class="stat-card">
-          <div class="stat-value">3.3 <span class="stat-unit">SEC</span></div>
-          <div class="stat-label">0-60 MPH Acceleration</div>
-        </div>
-        <div class="stat-divider"></div>
-        <div class="stat-card">
-          <div class="stat-value">10.6 <span class="stat-unit">SEC</span></div>
-          <div class="stat-label">1/4 Mile Drag Trap Speed 133mph</div>
+  <!-- MASTER FULL-VIEWPORT 3D WEBGL STAGE -->
+  <main class="master-3d-experience">
+    <div id="webgl-container" class="webgl-container">
+      <canvas id="webgl-canvas"></canvas>
+      
+      <!-- Loading Screen Pill -->
+      <div id="model-loader-hud" class="model-loader-hud">
+        <div class="loader-spinner"></div>
+        <div class="loader-text-group">
+          <span class="loader-title">INITIALIZING 3D SHELBY MUSTANG MESH</span>
+          <span id="loader-progress-text" class="loader-sub">COMPILING PHYSICAL SHADERS & STREAMLINES...</span>
         </div>
       </div>
 
-      <!-- Action Buttons -->
-      <div class="hero-cta-group">
-        <button id="quick-rev-btn" class="btn-hero-primary">
-          <span class="btn-icon">⚡</span>
-          <span>IGNITE PREDATOR V8</span>
-          <span class="btn-key-hint">[SPACE]</span>
-        </button>
-        <a href="#aero-motion" class="btn-hero-secondary">
-          <span>EXPLORE MOTION GRAPHICS</span>
-          <span class="arrow-down">↓</span>
-        </a>
+      <!-- 3D Camera Preset Switcher Floating Bar -->
+      <div class="camera-presets-pill">
+        <button class="cam-btn active" data-cam="orbit">360° ORBIT</button>
+        <button class="cam-btn" data-cam="front-apex">3/4 APEX</button>
+        <button class="cam-btn" data-cam="side-aero">SIDE PROFILE</button>
+        <button class="cam-btn" data-cam="rear-wing">GT4 REAR WING</button>
+        <button class="cam-btn" data-cam="top-down">TOP DOWN</button>
+      </div>
+
+      <!-- 3D Hint -->
+      <div class="viewport-drag-hint">
+        <span class="hint-dot"></span>
+        <span>DRAG TO ROTATE 360° • SCROLL TO ZOOM</span>
       </div>
     </div>
 
-    <!-- Live Performance Floating Telemetry Card -->
-    <div class="hero-telemetry-hud">
-      <div class="hud-header">
-        <span class="hud-status-dot"></span>
-        <span class="hud-title">LIVE PREDATOR TELEMETRY</span>
-        <span class="hud-tag">TREMEC 7-SPEED DCT</span>
-      </div>
-      <div class="hud-body">
-        <div class="hud-metric">
-          <span class="metric-name">BOOST PRESSURE</span>
-          <span class="metric-val" id="hero-boost-val">12.2 PSI</span>
-        </div>
-        <div class="hud-bar-container">
-          <div class="hud-bar-fill" id="hero-boost-bar" style="width: 65%;"></div>
-        </div>
-        <div class="hud-metric">
-          <span class="metric-name">EXHAUST GAS TEMP</span>
-          <span class="metric-val" id="hero-egt-val">842° C</span>
-        </div>
-        <div class="hud-bar-container">
-          <div class="hud-bar-fill orange-glow" id="hero-egt-bar" style="width: 74%;"></div>
-        </div>
-      </div>
-    </div>
-  </section>
+    <!-- FLOATING INTERACTIVE HUD PANELS (Synchronized with active mode) -->
 
-  <!-- ========================================================== -->
-  <!-- MOTION GRAPHIC 1: AERODYNAMIC WIND TUNNEL PARTICLE FIELD -->
-  <!-- ========================================================== -->
-  <section class="motion-section" id="aero-motion">
-    <div class="section-container">
-      <div class="motion-header">
-        <div class="motion-number-tag">MOTION GRAPHIC 01</div>
-        <h2 class="motion-section-title">AERO DYNAMICS: SUPERSONIC WIND TUNNEL</h2>
-        <p class="motion-section-desc">
-          Interactive particle stream simulation computing 1,500+ dynamic airflow vectors shearing across 
-          the Shelby GT500 front splitter, hood heat extractors, and GT4 high-downforce carbon wing.
+    <!-- ==================== 00: HERO HUD ==================== -->
+    <div class="mode-panel active" id="panel-hero">
+      <div class="hero-content-card">
+        <div class="hero-badge-tag">
+          <span class="badge-dot"></span>
+          <span>AUTHENTIC 3D MUSTANG WEBGL ENGINE</span>
+        </div>
+        <h1 class="hero-title">
+          <span class="hero-title-light">SHELBY MUSTANG</span>
+          <span class="hero-title-bold gradient-chrome">GT500 PREDATOR</span>
+        </h1>
+        <p class="hero-description">
+          A handcrafted physical 3D model of Carroll Shelby’s apex American weapon. 
+          Rotate in 360°, inspect the high-downforce carbon wing, explore 3 dynamic visual motion graphics, 
+          and rev the 760 HP supercharged V8 in real time.
         </p>
-      </div>
 
-      <div class="motion-viewport-card aero-card">
-        <!-- Interactive Canvas Stage -->
-        <div class="canvas-wrapper">
-          <canvas id="aero-canvas" width="1200" height="600"></canvas>
-          <div class="canvas-overlay-hud">
-            <div class="hud-col">
-              <span class="hud-label">CALCULATED DOWNFORCE</span>
-              <span class="hud-data-large" id="downforce-val">550 <small>LBS</small></span>
-              <span class="hud-sub">AT 180 MPH TRACK VELOCITY</span>
-            </div>
-            <div class="hud-col">
-              <span class="hud-label">DRAG COEFFICIENT</span>
-              <span class="hud-data-large" id="drag-coeff-val">0.38 <small>Cd</small></span>
-              <span class="hud-sub">OPTIMIZED AIR CURTAINS</span>
-            </div>
-            <div class="hud-col">
-              <span class="hud-label">AIRFLOW VELOCITY</span>
-              <span class="hud-data-large" id="flow-speed-val">130 <small>MPH</small></span>
-              <span class="hud-sub">WIND TUNNEL TUNED</span>
-            </div>
+        <!-- Vital Statistics Grid -->
+        <div class="hero-stats-band">
+          <div class="stat-card">
+            <div class="stat-value">760 <span class="stat-unit">BHP</span></div>
+            <div class="stat-label">Hand-Built 5.2L Supercharged V8</div>
           </div>
-          <div class="canvas-interaction-hint">
-            <span class="hint-icon">🖱️</span> Move mouse across canvas to simulate crosswind vortex disruption
+          <div class="stat-card">
+            <div class="stat-value">625 <span class="stat-unit">LB-FT</span></div>
+            <div class="stat-label">Torque @ 5,000 RPM</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">3.3 <span class="stat-unit">SEC</span></div>
+            <div class="stat-label">0-60 MPH Acceleration</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">1.35 <span class="stat-unit">G</span></div>
+            <div class="stat-label">Lateral Grip on Cup 2 Tyres</div>
           </div>
         </div>
 
-        <!-- Controls Console -->
-        <div class="motion-controls-bar">
-          <div class="control-group">
-            <span class="control-title">WIND SPEED REGIME:</span>
-            <div class="btn-pill-group">
+        <div class="hero-action-row">
+          <button id="quick-rev-btn" class="btn-hero-primary">
+            <span class="btn-icon">⚡</span>
+            <span>IGNITE PREDATOR V8</span>
+            <span class="btn-key-hint">[SPACE]</span>
+          </button>
+          <button class="btn-hero-secondary" id="explore-aero-trigger">
+            <span>ENTER 3D WIND TUNNEL</span>
+            <span class="arrow-right">→</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== 01: 3D AERO WIND TUNNEL HUD ==================== -->
+    <div class="mode-panel" id="panel-aero">
+      <div class="motion-hud-card aero-hud">
+        <div class="hud-top-bar">
+          <div class="motion-number-tag">MOTION GRAPHIC 01</div>
+          <span class="hud-chip">3D VECTOR FIELD SIMULATION</span>
+        </div>
+        <h2 class="hud-main-title">AERO DYNAMICS: 3D SUPERSONIC WIND TUNNEL</h2>
+        <p class="hud-body-text">
+          2,000+ real-time 3D particle streamline vectors shearing over the 3D Mustang body. 
+          Notice the high-pressure stagnation at the carbon splitter, cooling upwash out of the hood extractors, 
+          and turbulent downforce vortices behind the GT4 rear wing.
+        </p>
+
+        <!-- Live Calculated Aerodynamic Telemetry -->
+        <div class="telemetry-row">
+          <div class="t-box">
+            <span class="t-label">DOWNFORCE</span>
+            <span class="t-data" id="downforce-val">550 <small>LBS</small></span>
+            <span class="t-sub">AT 180 MPH</span>
+          </div>
+          <div class="t-box">
+            <span class="t-label">DRAG COEFF</span>
+            <span class="t-data" id="drag-coeff-val">0.38 <small>Cd</small></span>
+            <span class="t-sub">OPTIMIZED AIR CURTAINS</span>
+          </div>
+          <div class="t-box">
+            <span class="t-label">STREAM SPEED</span>
+            <span class="t-data" id="flow-speed-val">130 <small>MPH</small></span>
+            <span class="t-sub">REAL-TIME FLOW</span>
+          </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="hud-controls-stack">
+          <div class="ctrl-subgroup">
+            <span class="ctrl-label">WIND TUNNEL SPEED REGIME:</span>
+            <div class="pill-group">
               <button class="pill-btn" data-speed="65">LOW DRAG (65 MPH)</button>
               <button class="pill-btn active" data-speed="130">TRACK ATTACK (130 MPH)</button>
               <button class="pill-btn" data-speed="186">V-MAX APEX (186 MPH)</button>
             </div>
           </div>
 
-          <div class="control-group">
-            <span class="control-title">PARTICLE SHADER MODE:</span>
-            <div class="btn-pill-group">
+          <div class="ctrl-subgroup">
+            <span class="ctrl-label">3D PARTICLE SHADER MODE:</span>
+            <div class="pill-group">
               <button class="pill-btn active" id="btn-mode-stream">LAMINAR STREAMLINES</button>
               <button class="pill-btn" id="btn-mode-pressure">PRESSURE GRADIENT</button>
-              <button class="pill-btn" id="btn-mode-vortex">WAKE VORTICES</button>
+              <button class="pill-btn" id="btn-mode-vortex">WAKE TURBULENCE</button>
             </div>
           </div>
 
-          <div class="control-group wing-angle-group">
-            <span class="control-title">GT4 REAR WING ANGLE: <strong id="wing-angle-disp">8.5°</strong></span>
+          <div class="ctrl-subgroup">
+            <div class="slider-header">
+              <span class="ctrl-label">GT4 REAR WING ANGLE OF ATTACK:</span>
+              <span class="slider-readout" id="wing-angle-disp">8.5°</span>
+            </div>
             <input type="range" id="wing-angle-slider" min="2" max="15" value="8.5" step="0.5" class="luxury-slider">
           </div>
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- ========================================================== -->
-  <!-- MOTION GRAPHIC 2: PREDATOR 5.2L SUPERCHARGED V8 & DYNO -->
-  <!-- ========================================================== -->
-  <section class="motion-section" id="powertrain-motion">
-    <div class="section-container">
-      <div class="motion-header">
-        <div class="motion-number-tag red-tag">MOTION GRAPHIC 02</div>
-        <h2 class="motion-section-title">POWERTRAIN: 5.2L SUPERCHARGED V8 & ACOUSTIC DYNO</h2>
-        <p class="motion-section-desc">
-          Interactive mechanical dynamometer simulating the Eaton TVS R2650 inverted supercharger, 
-          cross-plane firing order (1-5-4-8-6-3-7-2), real-time Web Audio API sound synthesis, and dyno curve.
+    <!-- ==================== 02: 3D V8 DYNO HUD ==================== -->
+    <div class="mode-panel" id="panel-powertrain">
+      <div class="motion-hud-card dyno-hud">
+        <div class="hud-top-bar">
+          <div class="motion-number-tag red-tag">MOTION GRAPHIC 02</div>
+          <span class="hud-chip">3D CHASSIS TORQUE & ACOUSTIC DYNO</span>
+        </div>
+        <h2 class="hud-main-title">POWERTRAIN: 5.2L SUPERCHARGED V8 & 3D TORQUE SHAKE</h2>
+        <p class="hud-body-text">
+          Rev the Predator V8 to watch the <strong>real 3D car body physically rock and torque on its suspension</strong> 
+          with authentic idle rumble, Eaton TVS 2.65L supercharger whine, and exhaust crackles synthesized in real time.
         </p>
-      </div>
 
-      <div class="motion-viewport-card dyno-card">
-        <div class="dyno-grid-layout">
-          <!-- Main Tachometer & Supercharger Boost Gauge -->
-          <div class="gauge-stage">
-            <canvas id="tachometer-canvas" width="480" height="480"></canvas>
-            <div class="gauge-center-readout">
+        <!-- Gauges & Telemetry Row -->
+        <div class="dyno-instruments-row">
+          <div class="gauge-card">
+            <canvas id="tachometer-canvas" width="320" height="320"></canvas>
+            <div class="tach-center-readout">
               <span class="current-rpm-number" id="rpm-readout">850</span>
               <span class="rpm-unit">RPM</span>
               <span class="gear-indicator" id="gear-indicator">N</span>
             </div>
           </div>
 
-          <!-- Powertrain Mechanical Telemetry & Firing Order Visualizer -->
-          <div class="powertrain-telemetry-stage">
-            <!-- Cylinder Firing Order Kinetic Visualizer -->
-            <div class="sub-panel">
-              <div class="panel-header">
-                <span class="panel-title">CROSS-PLANE 8-CYLINDER FIRING ORDER</span>
-                <span class="panel-badge">1 - 5 - 4 - 8 - 6 - 3 - 7 - 2</span>
-              </div>
-              <div class="cylinder-bank-grid" id="cylinder-bank">
-                <!-- 8 Cylinders with animated piston compression and spark flash -->
-                <div class="cylinder-pod" data-cyl="1"><span class="cyl-id">C1</span><div class="spark-dot"></div><div class="piston-bar"></div></div>
-                <div class="cylinder-pod" data-cyl="2"><span class="cyl-id">C2</span><div class="spark-dot"></div><div class="piston-bar"></div></div>
-                <div class="cylinder-pod" data-cyl="3"><span class="cyl-id">C3</span><div class="spark-dot"></div><div class="piston-bar"></div></div>
-                <div class="cylinder-pod" data-cyl="4"><span class="cyl-id">C4</span><div class="spark-dot"></div><div class="piston-bar"></div></div>
-                <div class="cylinder-pod" data-cyl="5"><span class="cyl-id">C5</span><div class="spark-dot"></div><div class="piston-bar"></div></div>
-                <div class="cylinder-pod" data-cyl="6"><span class="cyl-id">C6</span><div class="spark-dot"></div><div class="piston-bar"></div></div>
-                <div class="cylinder-pod" data-cyl="7"><span class="cyl-id">C7</span><div class="spark-dot"></div><div class="piston-bar"></div></div>
-                <div class="cylinder-pod" data-cyl="8"><span class="cyl-id">C8</span><div class="spark-dot"></div><div class="piston-bar"></div></div>
-              </div>
+          <div class="dyno-meters-card">
+            <div class="meter-box">
+              <span class="m-label">SUPERCHARGER BOOST</span>
+              <span class="m-val" id="boost-psi-disp">0.2 <small>PSI</small></span>
+              <div class="m-bar-bg"><div class="m-bar-fill" id="boost-meter-fill"></div></div>
             </div>
+            <div class="meter-box">
+              <span class="m-label">OUTPUT HORSEPOWER</span>
+              <span class="m-val" id="dyno-hp-disp">98 <small>BHP</small></span>
+              <div class="m-bar-bg"><div class="m-bar-fill red" id="hp-meter-fill"></div></div>
+            </div>
+            <div class="meter-box">
+              <span class="m-label">INSTANT TORQUE</span>
+              <span class="m-val" id="dyno-torque-disp">180 <small>LB-FT</small></span>
+              <div class="m-bar-bg"><div class="m-bar-fill amber" id="torque-meter-fill"></div></div>
+            </div>
+          </div>
+        </div>
 
-            <!-- Eaton Supercharger & Power Readouts -->
-            <div class="sub-panel">
-              <div class="panel-header">
-                <span class="panel-title">SUPERCHARGER BOOST & INTAKE DYNAMICS</span>
-                <span class="panel-badge" id="blower-speed-disp">EATON 2.65L ROOTS</span>
-              </div>
-              <div class="blower-stats-grid">
-                <div class="blower-stat-box">
-                  <span class="b-label">BOOST LEVEL</span>
-                  <span class="b-val" id="boost-psi-disp">0.2 <small>PSI</small></span>
-                  <div class="b-progress-bg"><div class="b-progress-fill" id="boost-meter-fill"></div></div>
-                </div>
-                <div class="blower-stat-box">
-                  <span class="b-label">OUTPUT HORSEPOWER</span>
-                  <span class="b-val" id="dyno-hp-disp">98 <small>BHP</small></span>
-                  <div class="b-progress-bg"><div class="b-progress-fill red-fill" id="hp-meter-fill"></div></div>
-                </div>
-                <div class="blower-stat-box">
-                  <span class="b-label">INSTANT TORQUE</span>
-                  <span class="b-val" id="dyno-torque-disp">180 <small>LB-FT</small></span>
-                  <div class="b-progress-bg"><div class="b-progress-fill amber-fill" id="torque-meter-fill"></div></div>
-                </div>
-                <div class="blower-stat-box">
-                  <span class="b-label">EXHAUST SOUNDWAVE</span>
-                  <canvas id="audio-waveform-canvas" width="220" height="50"></canvas>
-                </div>
-              </div>
-            </div>
+        <!-- 8-Cylinder Cross-Plane Firing Order Visualizer -->
+        <div class="firing-order-strip">
+          <span class="fo-title">CROSS-PLANE FIRING ORDER: 1 - 5 - 4 - 8 - 6 - 3 - 7 - 2</span>
+          <div class="cylinder-bank-grid" id="cylinder-bank">
+            <div class="cylinder-pod" data-cyl="1"><span class="cyl-id">C1</span><div class="spark-dot"></div></div>
+            <div class="cylinder-pod" data-cyl="2"><span class="cyl-id">C2</span><div class="spark-dot"></div></div>
+            <div class="cylinder-pod" data-cyl="3"><span class="cyl-id">C3</span><div class="spark-dot"></div></div>
+            <div class="cylinder-pod" data-cyl="4"><span class="cyl-id">C4</span><div class="spark-dot"></div></div>
+            <div class="cylinder-pod" data-cyl="5"><span class="cyl-id">C5</span><div class="spark-dot"></div></div>
+            <div class="cylinder-pod" data-cyl="6"><span class="cyl-id">C6</span><div class="spark-dot"></div></div>
+            <div class="cylinder-pod" data-cyl="7"><span class="cyl-id">C7</span><div class="spark-dot"></div></div>
+            <div class="cylinder-pod" data-cyl="8"><span class="cyl-id">C8</span><div class="spark-dot"></div></div>
+          </div>
+        </div>
 
-            <!-- Interactive Throttle Pedal & RPM Trigger -->
-            <div class="throttle-console">
-              <div class="throttle-instruction">
-                <span class="pulse-dot"></span>
-                <span>PRESS & HOLD THROTTLE TO ACCELERATE (OR PRESS SPACEBAR)</span>
-              </div>
-              <div class="throttle-control-row">
-                <button id="throttle-pedal-btn" class="throttle-pedal-luxury">
-                  <span class="pedal-ribs"></span>
-                  <span class="pedal-label">FLOOR THROTTLE</span>
-                </button>
-                <div class="rpm-slider-wrap">
-                  <span class="slider-tag">MANUAL RPM SWEEP:</span>
-                  <input type="range" id="manual-rpm-slider" min="850" max="8250" value="850" step="25" class="luxury-slider">
-                </div>
-              </div>
-            </div>
+        <!-- Throttle Controls -->
+        <div class="throttle-control-row">
+          <button id="throttle-pedal-btn" class="throttle-pedal-luxury">
+            <span class="pedal-ribs"></span>
+            <span class="pedal-label">FLOOR THROTTLE [HOLD]</span>
+          </button>
+          <div class="slider-wrapper">
+            <span class="slider-tag">OR DRAG MANUAL RPM SLIDER:</span>
+            <input type="range" id="manual-rpm-slider" min="850" max="8250" value="850" step="25" class="luxury-slider full-width">
           </div>
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- ========================================================== -->
-  <!-- MOTION GRAPHIC 3: MAGNERIDE SUSPENSION & G-FORCE TELEMETRY -->
-  <!-- ========================================================== -->
-  <section class="motion-section" id="chassis-motion">
-    <div class="section-container">
-      <div class="motion-header">
-        <div class="motion-number-tag gold-tag">MOTION GRAPHIC 03</div>
-        <h2 class="motion-section-title">CHASSIS: MAGNERIDE 1,000Hz SUSPENSION & G-FORCE HUD</h2>
-        <p class="motion-section-desc">
-          Live simulation of the magnetorheological damping active dampers recalculating every 1 millisecond. 
-          Interactive friction circle (G-G diagram) tracking lateral forces exceeding 1.4G with thermal brake rotor mapping.
+    <!-- ==================== 03: 3D MAGNERIDE CHASSIS HUD ==================== -->
+    <div class="mode-panel" id="panel-chassis">
+      <div class="motion-hud-card chassis-hud">
+        <div class="hud-top-bar">
+          <div class="motion-number-tag gold-tag">MOTION GRAPHIC 03</div>
+          <span class="hud-chip">1,000Hz CHASSIS KINEMATICS & ROTOR THERMAL HUD</span>
+        </div>
+        <h2 class="hud-main-title">CHASSIS: MAGNERIDE 1,000Hz SUSPENSION & 3D BODY ROLL</h2>
+        <p class="hud-body-text">
+          Watch the <strong>real 3D Mustang lean, dive under heavy braking, and squat on acceleration</strong> 
+          as active MagneRide dampers adapt every millisecond. Observe the Brembo carbon-ceramic brake rotors glowing hot in 3D!
         </p>
-      </div>
 
-      <div class="motion-viewport-card chassis-card">
-        <div class="chassis-grid-layout">
-          <!-- Left: Track Replay & Circuit Simulator -->
-          <div class="track-telemetry-col">
+        <!-- Racetrack Selection & Friction Envelope -->
+        <div class="chassis-telemetry-grid">
+          <div class="track-card">
             <div class="circuit-header">
-              <span class="circuit-tag">ACTIVE CIRCUIT REPLAY</span>
-              <div class="circuit-selector-group">
+              <span class="circuit-label">SELECT RACEWAY CIRCUIT:</span>
+              <div class="pill-group">
                 <button class="circuit-btn active" data-track="laguna">LAGUNA SECA (CORKSCREW)</button>
                 <button class="circuit-btn" data-track="nurburgring">NÜRBURGRING (KARUSSELL)</button>
-                <button class="circuit-btn" data-track="roadamerica">ROAD AMERICA (CANADA CORNER)</button>
+                <button class="circuit-btn" data-track="roadamerica">ROAD AMERICA</button>
               </div>
             </div>
-
-            <!-- Track Visualizer Canvas -->
-            <div class="track-canvas-wrapper">
-              <canvas id="track-canvas" width="540" height="320"></canvas>
-              <div class="track-info-overlay">
-                <span class="track-corner-name" id="track-turn-name">TURN 8 — THE CORKSCREW</span>
-                <span class="track-speed-telemetry" id="track-speed-telemetry">APEX SPEED: 68 MPH</span>
+            <div class="track-canvas-container">
+              <canvas id="track-canvas" width="380" height="200"></canvas>
+              <div class="track-overlay-readout">
+                <span id="track-turn-name">TURN 8 — THE CORKSCREW</span>
+                <span id="track-speed-telemetry" class="telemetry-speed">APEX: 68 MPH • LATERAL: 1.35G</span>
               </div>
-            </div>
-
-            <div class="track-playback-controls">
-              <button id="track-play-toggle" class="btn-playback">
-                <span id="play-icon">⏸</span> <span id="play-text">PAUSE SIMULATION</span>
-              </button>
-              <span class="telemetry-tick-rate">TELEMETRY UPDATE: <strong>1,000 Hz</strong> ACTIVE</span>
             </div>
           </div>
 
-          <!-- Right: G-G Friction Circle & 4-Wheel Damping HUD -->
-          <div class="damper-friction-col">
-            <div class="friction-circle-card">
-              <div class="f-header">
-                <span class="f-title">G-G FRICTION ACCELERATION CIRCLE</span>
-                <span class="g-readout" id="current-g-readout">1.34 G</span>
-              </div>
-              <div class="g-circle-wrapper">
-                <canvas id="friction-circle-canvas" width="280" height="280"></canvas>
-              </div>
-              <div class="g-axes-labels">
-                <span>LATERAL G: <strong id="lat-g-disp">+1.28g</strong></span>
-                <span>LONGITUDINAL G: <strong id="long-g-disp">-0.85g (BRAKING)</strong></span>
-              </div>
+          <div class="friction-card">
+            <span class="f-title">G-G FRICTION ACCELERATION ENVELOPE</span>
+            <div class="g-canvas-container">
+              <canvas id="friction-circle-canvas" width="200" height="200"></canvas>
             </div>
+            <div class="g-readout-row">
+              <span>LATERAL G: <strong id="lat-g-disp">+1.32g</strong></span>
+              <span>LONGITUDINAL: <strong id="long-g-disp">-0.92g (BRAKING)</strong></span>
+            </div>
+          </div>
+        </div>
 
-            <!-- 4-Corner MagneRide Damping Pods -->
-            <div class="four-corners-grid">
-              <div class="corner-pod" id="corner-fl">
-                <div class="c-header"><span class="c-pos">FRONT LEFT</span><span class="c-val" id="damper-fl-val">42%</span></div>
-                <div class="c-rotor-status">ROTOR: <span class="rotor-temp" id="rotor-fl-temp">480°C</span></div>
-                <div class="damper-bar-bg"><div class="damper-bar-fill" id="damper-fl-bar" style="height: 42%;"></div></div>
-              </div>
-              <div class="corner-pod" id="corner-fr">
-                <div class="c-header"><span class="c-pos">FRONT RIGHT</span><span class="c-val" id="damper-fr-val">78%</span></div>
-                <div class="c-rotor-status">ROTOR: <span class="rotor-temp" id="rotor-fr-temp">620°C</span></div>
-                <div class="damper-bar-bg"><div class="damper-bar-fill" id="damper-fr-bar" style="height: 78%;"></div></div>
-              </div>
-              <div class="corner-pod" id="corner-rl">
-                <div class="c-header"><span class="c-pos">REAR LEFT</span><span class="c-val" id="damper-rl-val">36%</span></div>
-                <div class="c-rotor-status">ROTOR: <span class="rotor-temp" id="rotor-rl-temp">350°C</span></div>
-                <div class="damper-bar-bg"><div class="damper-bar-fill" id="damper-rl-bar" style="height: 36%;"></div></div>
-              </div>
-              <div class="corner-pod" id="corner-rr">
-                <div class="c-header"><span class="c-pos">REAR RIGHT</span><span class="c-val" id="damper-rr-val">65%</span></div>
-                <div class="c-rotor-status">ROTOR: <span class="rotor-temp" id="rotor-rr-temp">510°C</span></div>
-                <div class="damper-bar-bg"><div class="damper-bar-fill" id="damper-rr-bar" style="height: 65%;"></div></div>
-              </div>
-            </div>
+        <!-- 4-Wheel Damping & Thermal Rotors -->
+        <div class="four-corners-grid">
+          <div class="corner-pod" id="corner-fl">
+            <span class="c-title">FRONT LEFT</span>
+            <div class="c-bar-bg"><div class="c-bar-fill" id="damper-fl-bar" style="height: 45%;"></div></div>
+            <span class="c-rotor-temp" id="rotor-fl-temp">ROTOR: 580°C</span>
+          </div>
+          <div class="corner-pod" id="corner-fr">
+            <span class="c-title">FRONT RIGHT</span>
+            <div class="c-bar-bg"><div class="c-bar-fill" id="damper-fr-bar" style="height: 75%;"></div></div>
+            <span class="c-rotor-temp" id="rotor-fr-temp">ROTOR: 640°C</span>
+          </div>
+          <div class="corner-pod" id="corner-rl">
+            <span class="c-title">REAR LEFT</span>
+            <div class="c-bar-bg"><div class="c-bar-fill" id="damper-rl-bar" style="height: 38%;"></div></div>
+            <span class="c-rotor-temp" id="rotor-rl-temp">ROTOR: 360°C</span>
+          </div>
+          <div class="corner-pod" id="corner-rr">
+            <span class="c-title">REAR RIGHT</span>
+            <div class="c-bar-bg"><div class="c-bar-fill" id="damper-rr-bar" style="height: 62%;"></div></div>
+            <span class="c-rotor-temp" id="rotor-rr-temp">ROTOR: 490°C</span>
           </div>
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- ========================================================== -->
-  <!-- SECTION 4: INTERACTIVE 360° STUDIO CONFIGURATOR -->
-  <!-- ========================================================== -->
-  <section class="studio-section" id="configurator">
-    <div class="section-container">
-      <div class="motion-header">
-        <div class="motion-number-tag blue-tag">STUDIO BESPOKE</div>
-        <h2 class="motion-section-title">THE CARROLL SHELBY BESPOKE SPECIFICATION</h2>
-        <p class="motion-section-desc">
-          Architect your bespoke GT500 specification. Choose authentic Carroll Shelby livery palettes, 
-          aerodynamic downforce packages, and exposed carbon fiber track wheels.
-        </p>
-      </div>
-
-      <div class="studio-card">
-        <!-- Interactive 3D Stage / Render Visualizer -->
-        <div class="studio-render-stage">
-          <canvas id="studio-car-canvas" width="900" height="420"></canvas>
-          <div class="car-angle-switcher">
-            <button class="angle-btn active" data-view="side">SIDE PROFILE</button>
-            <button class="angle-btn" data-view="three-quarter">3/4 FRONT APEX</button>
-            <button class="angle-btn" data-view="rear">GT4 REAR DIFFUSER</button>
-          </div>
-          <div class="car-badge-overlay">
-            <span class="spec-label">ACTIVE BUILD:</span>
-            <span class="spec-title" id="active-spec-title">SHELBY GT500 • CARBON TRACK PACK</span>
-          </div>
+    <!-- ==================== 04: BESPOKE 3D CONFIGURATOR HUD ==================== -->
+    <div class="mode-panel" id="panel-configurator">
+      <div class="motion-hud-card config-hud" id="configurator-panel">
+        <div class="hud-top-bar">
+          <div class="motion-number-tag blue-tag">STUDIO BESPOKE 3D</div>
+          <span class="hud-chip">REAL-TIME PHYSICAL SHADER CONFIGURATOR</span>
         </div>
+        <h2 class="hud-main-title">CARROLL SHELBY 3D BESPOKE SPECIFICATION</h2>
+        <p class="hud-body-text">
+          Customize the real 3D Mustang model in real time. Switch exterior clearcoat metallic finishes, 
+          wheel alloys, and calipers while inspecting the vehicle in 360°.
+        </p>
 
-        <!-- Customizer Configuration Panel -->
-        <div class="studio-controls-panel">
-          <!-- Paint Finishes -->
-          <div class="cfg-section">
-            <span class="cfg-heading">HERITAGE EXTERIOR COLORWAY</span>
-            <div class="swatches-grid">
-              <button class="swatch-btn active" data-color="#0F172A" data-stripe="#FFFFFF" data-name="Shadow Obsidian Black">
-                <span class="swatch-circle" style="background: linear-gradient(135deg, #1E293B, #020617); border: 1px solid rgba(255,255,255,0.3);"></span>
-                <span class="swatch-name">Shadow Obsidian</span>
-              </button>
-              <button class="swatch-btn" data-color="#023E8A" data-stripe="#FFFFFF" data-name="Liquid Cobalt Blue">
-                <span class="swatch-circle" style="background: linear-gradient(135deg, #0077B6, #03045E);"></span>
-                <span class="swatch-name">Cobalt Le Mans</span>
-              </button>
-              <button class="swatch-btn" data-color="#991B1B" data-stripe="#1E293B" data-name="Track Attack Rapid Red">
-                <span class="swatch-circle" style="background: linear-gradient(135deg, #DC2626, #7F1D1D);"></span>
-                <span class="swatch-name">Rapid Red Metallic</span>
-              </button>
-              <button class="swatch-btn" data-color="#C2410C" data-stripe="#09090B" data-name="Twister Grabber Orange">
-                <span class="swatch-circle" style="background: linear-gradient(135deg, #EA580C, #9A3412);"></span>
-                <span class="swatch-name">Grabber Orange</span>
-              </button>
-              <button class="swatch-btn" data-color="#27272A" data-stripe="#DC2626" data-name="Stealth Cyber Carbon">
-                <span class="swatch-circle" style="background: radial-gradient(circle, #3F3F46 20%, #18181B 80%);"></span>
-                <span class="swatch-name">Raw Matte Carbon</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- Racing Stripes -->
-          <div class="cfg-section">
-            <span class="cfg-heading">OVER-THE-TOP LE MANS RACING STRIPES</span>
-            <div class="stripe-options-grid">
-              <button class="stripe-option-btn active" data-stripes="dual-white">WIMBLEDON WHITE DUAL</button>
-              <button class="stripe-option-btn" data-stripes="dual-black">MATTE STEALTH BLACK</button>
-              <button class="stripe-option-btn" data-stripes="dual-red">VENOM CRIMSON PINSTRIPE</button>
-              <button class="stripe-option-btn" data-stripes="none">STRIPE DELETE (CLEAN)</button>
-            </div>
-          </div>
-
-          <!-- Aero Package -->
-          <div class="cfg-section">
-            <span class="cfg-heading">AERODYNAMICS PACKAGE</span>
-            <div class="pkg-cards-grid">
-              <div class="pkg-card active" data-pkg="track">
-                <div class="pkg-header">
-                  <span class="pkg-name">CARBON FIBER TRACK PACK</span>
-                  <span class="pkg-price">+$18,500</span>
-                </div>
-                <p class="pkg-desc">20" Exposed Carbon-Fiber Wheels, Michelin Pilot Sport Cup 2, High-Downforce GT4 Carbon Wing, Splitter Wickerbills, Rear Seat Delete.</p>
-              </div>
-              <div class="pkg-card" data-pkg="handling">
-                <div class="pkg-header">
-                  <span class="pkg-name">HANDLING & STREET CRUISE</span>
-                  <span class="pkg-price">+$3,000</span>
-                </div>
-                <p class="pkg-desc">Adjustable Strut Top Mounts, Integrated Gurney Flap Spoiler, Alcantara Climate Seats, B&O 12-Speaker Sound System.</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Price & Order Bar -->
-          <div class="cfg-summary-bar">
-            <div class="price-stack">
-              <span class="price-label">MSRP AS CONFIGURED</span>
-              <span class="price-val" id="total-price-disp">$106,795</span>
-            </div>
-            <button class="btn-primary-luxury large" id="save-spec-btn">
-              <span>GENERATE OFFICIAL BUILD SHEET</span>
+        <!-- Paint Swatches Grid -->
+        <div class="config-section">
+          <span class="config-section-title">HERITAGE EXTERIOR COLORWAY (LIVE 3D):</span>
+          <div class="swatches-grid">
+            <button class="swatch-btn active" data-color="#0A0D14" data-rough="0.15" data-metal="0.9" data-name="Shadow Obsidian Black">
+              <span class="swatch-circle" style="background: linear-gradient(135deg, #1E293B, #020617); border: 1px solid rgba(255,255,255,0.4);"></span>
+              <span class="swatch-name">Shadow Obsidian</span>
+            </button>
+            <button class="swatch-btn" data-color="#00388A" data-rough="0.2" data-metal="0.8" data-name="Liquid Cobalt Le Mans Blue">
+              <span class="swatch-circle" style="background: linear-gradient(135deg, #0055D4, #001E50);"></span>
+              <span class="swatch-name">Cobalt Le Mans</span>
+            </button>
+            <button class="swatch-btn" data-color="#880505" data-rough="0.15" data-metal="0.85" data-name="Track Attack Rapid Red">
+              <span class="swatch-circle" style="background: linear-gradient(135deg, #DC2626, #600000);"></span>
+              <span class="swatch-name">Rapid Red Metallic</span>
+            </button>
+            <button class="swatch-btn" data-color="#B83A00" data-rough="0.2" data-metal="0.7" data-name="Twister Grabber Orange">
+              <span class="swatch-circle" style="background: linear-gradient(135deg, #FF5500, #8A2200);"></span>
+              <span class="swatch-name">Grabber Orange</span>
+            </button>
+            <button class="swatch-btn" data-color="#181A20" data-rough="0.4" data-metal="0.4" data-name="Raw Matte Cyber Carbon">
+              <span class="swatch-circle" style="background: radial-gradient(circle, #333 20%, #111 80%);"></span>
+              <span class="swatch-name">Raw Matte Carbon</span>
             </button>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- ========================================================== -->
-  <!-- SECTION 5: CARROLL SHELBY HERITAGE & CSM REGISTRY PLAQUE -->
-  <!-- ========================================================== -->
-  <section class="heritage-section" id="heritage">
-    <div class="section-container">
-      <div class="motion-header">
-        <div class="motion-number-tag">CSM REGISTRY</div>
-        <h2 class="motion-section-title">CARROLL SHELBY HERITAGE & OFFICIAL REGISTRY</h2>
-        <p class="motion-section-desc">
-          Every Shelby Mustang is permanently recorded in the Shelby World Registry. 
-          Generate your official serialized Carroll Shelby CSM chassis plaque below.
-        </p>
-      </div>
-
-      <div class="heritage-grid">
-        <!-- Historical Lineage Interactive Carousel -->
-        <div class="lineage-card">
-          <div class="lineage-tabs">
-            <button class="lineage-tab" data-era="1965">1965 GT350</button>
-            <button class="lineage-tab" data-era="1967">1967 GT500</button>
-            <button class="lineage-tab active" data-era="2020">2020 GT500 PREDATOR</button>
-            <button class="lineage-tab" data-era="2024">2024 CODE RED (1300HP)</button>
-          </div>
-          <div class="lineage-content" id="lineage-content-box">
-            <h3 class="lineage-title" id="lineage-title">2020-2022 SHELBY GT500 "PREDATOR"</h3>
-            <p class="lineage-desc" id="lineage-desc">
-              The fastest, most aerodynamically advanced street-legal Mustang ever engineered. 
-              Featuring the inverted Eaton 2.65L supercharger generating 12 PSI, 7-speed dual-clutch transmission 
-              capable of 80-millisecond shifts, and Brembo 6-piston 420mm front brakes.
-            </p>
-            <div class="lineage-specs-pill" id="lineage-specs">
-              <span>POWER: 760 BHP</span> • <span>TORQUE: 625 LB-FT</span> • <span>TOP SPEED: 180 MPH</span>
-            </div>
+        <!-- Aero Packages -->
+        <div class="config-section">
+          <span class="config-section-title">AERODYNAMICS PACKAGE:</span>
+          <div class="pkg-row">
+            <button class="pkg-btn active" data-pkg="track">CARBON FIBER TRACK PACK (+$18,500)</button>
+            <button class="pkg-btn" data-pkg="street">HANDLING & CRUISE (+$3,000)</button>
           </div>
         </div>
 
-        <!-- Interactive CSM Chassis Plaque Generator -->
-        <div class="csm-builder-card">
-          <div class="plaque-form">
-            <span class="form-title">COMMISSION YOUR CSM CHASSIS PLAQUE</span>
-            <div class="input-row">
-              <label for="csm-owner-name">OWNER / PILOT NAME:</label>
-              <input type="text" id="csm-owner-name" value="CARROLL SHELBY PILOT" class="luxury-input">
-            </div>
-            <div class="input-row">
-              <label for="csm-chassis-no">SHELBY REGISTRY CSM NUMBER:</label>
-              <input type="text" id="csm-chassis-no" value="CSM #2026-GT500" class="luxury-input">
-            </div>
+        <!-- Serialized CSM Chassis Plaque Commission -->
+        <div class="csm-builder-subcard">
+          <div class="csm-header">
+            <span class="csm-tag">OFFICIAL SHELBY WORLD REGISTRY PLAQUE</span>
+            <input type="text" id="csm-owner-name" value="CARROLL SHELBY PILOT" class="csm-inline-input" placeholder="OWNER NAME">
+            <input type="text" id="csm-chassis-no" value="CSM #2026-GT500" class="csm-inline-input" placeholder="CSM #">
           </div>
-
-          <!-- Live Physical Brushed Aluminum Plaque Display -->
-          <div class="csm-physical-plate">
-            <div class="plate-rivet tl"></div>
-            <div class="plate-rivet tr"></div>
-            <div class="plate-rivet bl"></div>
-            <div class="plate-rivet br"></div>
-
-            <div class="plate-header">
-              <div class="plate-cobra-small">🐍</div>
-              <div class="plate-mfg">SHELBY AMERICAN, INC. • LAS VEGAS, NEVADA</div>
-            </div>
-
+          <!-- Brushed Aluminum Plaque Display -->
+          <div class="csm-physical-plate mini">
+            <div class="plate-mfg">SHELBY AMERICAN, INC. • LAS VEGAS, NEVADA</div>
             <div class="plate-chassis-row">
-              <span class="plate-tag">SHELBY SERIAL NUMBER:</span>
               <span class="plate-csm-val" id="plate-csm-display">CSM #2026-GT500</span>
-            </div>
-
-            <div class="plate-pilot-row">
-              <span class="plate-tag">REGISTERED OPERATOR:</span>
               <span class="plate-pilot-val" id="plate-pilot-display">CARROLL SHELBY PILOT</span>
             </div>
-
-            <div class="plate-signature-row">
-              <div class="cs-sig-text">Carroll Shelby</div>
-              <div class="plate-stamp">OFFICIAL VERIFIED REGISTRY</div>
-            </div>
           </div>
+        </div>
+
+        <!-- Price & Order Bar -->
+        <div class="cfg-summary-bar">
+          <div class="price-stack">
+            <span class="price-label">MSRP AS CONFIGURED:</span>
+            <span class="price-val" id="total-price-disp">$106,795</span>
+          </div>
+          <button class="btn-primary-luxury large" id="save-spec-btn">
+            <span>DOWNLOAD 3D BUILD SPECIFICATION</span>
+          </button>
         </div>
       </div>
     </div>
-  </section>
+  </main>
 
   <!-- LUXURY FOOTER & SYSTEM STATUS HUD -->
   <footer class="luxury-footer">
@@ -603,31 +456,33 @@
           </p>
         </div>
         <div class="keyboard-shortcuts-pill">
-          <span class="kb-title">KEYBOARD CONTROLS:</span>
+          <span class="kb-title">KEYBOARD SHORTCUTS:</span>
           <span class="kb-key">SPACE: Floor V8</span>
-          <span class="kb-key">M: Sound Mute</span>
+          <span class="kb-key">M: Mute/Unmute</span>
           <span class="kb-key">1: Aero</span>
           <span class="kb-key">2: Dyno</span>
           <span class="kb-key">3: Chassis</span>
+          <span class="kb-key">4: Config</span>
         </div>
       </div>
 
       <div class="footer-bottom">
         <div class="copyright">
-          © 2026 Shelby American Inc. & Ford Motor Company. Engineered with uncompromising luxury craft.
+          © 2026 Shelby American Inc. & Ford Motor Company. True 3D WebGL Engine.
         </div>
         <div class="system-status-indicators">
           <span class="sys-dot"></span>
-          <span>GPU RENDER: 60 FPS</span>
+          <span id="fps-counter">THREE.JS: 60 FPS</span>
           <span class="sys-divider">•</span>
           <span id="audio-engine-status">WEB AUDIO: READY</span>
           <span class="sys-divider">•</span>
-          <span>MAGNERIDE: 1,000Hz ACTIVE</span>
+          <span>PHYSICAL 3D MUSTANG: LOADED</span>
         </div>
       </div>
     </div>
   </footer>
 
-  <script src="app.js"></script>
+  <!-- Master Application Script (ES Module) -->
+  <script type="module" src="app.js"></script>
 </body>
 </html>
