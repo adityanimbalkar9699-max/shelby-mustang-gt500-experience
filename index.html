@@ -60,6 +60,11 @@
       </nav>
 
       <div class="nav-actions">
+        <button id="cinematic-film-btn" class="film-cta-pill" title="Watch Apple-Style 3D Cinematic Reveal Video">
+          <span class="play-triangle">▶</span>
+          <span>KEYNOTE REVEAL</span>
+          <span class="badge-live">3D FILM</span>
+        </button>
         <button id="audio-toggle-btn" class="audio-control-pill" title="Toggle V8 & Supercharger Synthesizer">
           <span class="sound-wave-bars">
             <span class="bar bar-1"></span>
@@ -101,6 +106,88 @@
       <div class="viewport-drag-hint">
         <span class="hint-dot"></span>
         <span>DRAG TO ROTATE 360° • SCROLL TO ZOOM</span>
+      </div>
+
+      <!-- APPLE-TIER INTERACTIVE 3D MECHANICAL ACTION DOCK -->
+      <div class="interactive-action-dock" id="action-dock">
+        <button class="dock-btn" id="dock-btn-film" title="Watch Apple Keynote Product Reveal Video">
+          <span class="dock-icon">▶</span>
+          <span class="dock-label">KEYNOTE FILM</span>
+        </button>
+        <div class="dock-divider"></div>
+        <button class="dock-btn" id="dock-btn-drive" title="Toggle 180 MPH High-Speed Track Running Animatic">
+          <span class="dock-icon">🏎️</span>
+          <span class="dock-label" id="dock-drive-label">TRACK RUN</span>
+        </button>
+        <button class="dock-btn" id="dock-btn-hood" title="Open Hood to Reveal 5.2L Supercharged V8 Engine">
+          <span class="dock-icon">⚙️</span>
+          <span class="dock-label" id="dock-hood-label">OPEN HOOD</span>
+        </button>
+        <button class="dock-btn" id="dock-btn-doors" title="Open Doors to Reveal Shelby Cockpit & Interior">
+          <span class="dock-icon">🚪</span>
+          <span class="dock-label" id="dock-doors-label">OPEN DOORS</span>
+        </button>
+        <button class="dock-btn" id="dock-btn-rev" title="Floor Predator V8 Throttle with Sound & 3D Torque">
+          <span class="dock-icon">⚡</span>
+          <span class="dock-label">FLOOR V8</span>
+        </button>
+      </div>
+
+      <!-- APPLE KEYNOTE FILM CONTROLLER HUD -->
+      <div class="cinematic-film-hud" id="cinematic-film-hud">
+        <div class="film-hud-header">
+          <div class="film-title-stack">
+            <span class="film-tag">APPLE-TIER 3D SHOWCASE REEL</span>
+            <span class="film-scene-name" id="film-scene-name">SCENE 01: THE APEX ARRIVAL (180 MPH TRACK RUN)</span>
+          </div>
+          <button class="film-close-btn" id="film-exit-btn" title="Exit Cinematic Video">✕ EXIT FILM</button>
+        </div>
+        
+        <!-- Timeline Scrubber -->
+        <div class="film-timeline-container">
+          <button class="film-playback-btn" id="film-playback-toggle" title="Play / Pause">❚❚</button>
+          <div class="timeline-track" id="film-timeline-track">
+            <div class="timeline-progress" id="film-timeline-progress"></div>
+            <div class="timeline-marker" style="left: 0%;" data-scene="0" title="Scene 1: Track Run"></div>
+            <div class="timeline-marker" style="left: 25%;" data-scene="1" title="Scene 2: Engine Reveal"></div>
+            <div class="timeline-marker" style="left: 50%;" data-scene="2" title="Scene 3: Cockpit Doors"></div>
+            <div class="timeline-marker" style="left: 75%;" data-scene="3" title="Scene 4: Supersonic Launch"></div>
+          </div>
+          <div class="timeline-time" id="film-time-disp">00:00 / 00:20</div>
+        </div>
+        
+        <!-- Scene Jump Chips -->
+        <div class="film-scene-chips">
+          <button class="scene-chip active" data-scene="0">01 TRACK RUN (180 MPH)</button>
+          <button class="scene-chip" data-scene="1">02 V8 ENGINE REVEAL</button>
+          <button class="scene-chip" data-scene="2">03 BESPOKE COCKPIT</button>
+          <button class="scene-chip" data-scene="3">04 SUPERSONIC LAUNCH</button>
+        </div>
+      </div>
+
+      <!-- FLOATING 3D MECHANICAL CALLOUT CARDS -->
+      <div class="callout-badge-card" id="engine-callout-card">
+        <div class="callout-line"></div>
+        <div class="callout-inner">
+          <div class="callout-tag">MECHANICAL REVEAL</div>
+          <div class="callout-heading">EATON TVS R2650 2.65L SUPERCHARGER</div>
+          <div class="callout-body">Inverted roots-type blower generating 12 PSI boost. 5.2L Cross-Plane Predator V8 producing 760 BHP & 625 LB-FT torque.</div>
+          <div class="callout-stats">
+            <span>BOOST: 12.0 PSI</span> • <span>REDLINE: 7,500 RPM</span> • <span>INTERCOOLER: LIQUID-TO-AIR</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout-badge-card" id="cockpit-callout-card">
+        <div class="callout-line"></div>
+        <div class="callout-inner">
+          <div class="callout-tag">INTERIOR CRAFT</div>
+          <div class="callout-heading">SHELBY RECARO RACING COCKPIT</div>
+          <div class="callout-body">Deep-bolstered leather & Alcantara bucket seats with Cobra snake embroidery. Tremec 7-Speed Dual-Clutch with 80ms shift paddles.</div>
+          <div class="callout-stats">
+            <span>SHIFT TIME: 80ms</span> • <span>STEERING: FLAT-BOTTOM ALCANTARA</span> • <span>ROLL CAGE: 4130 CHROMOLY</span>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -148,6 +235,16 @@
             <span class="btn-icon">⚡</span>
             <span>IGNITE PREDATOR V8</span>
             <span class="btn-key-hint">[SPACE]</span>
+          </button>
+          <button class="btn-hero-secondary" id="hero-film-trigger">
+            <span class="btn-icon">▶</span>
+            <span>WATCH KEYNOTE FILM</span>
+          </button>
+          <button class="btn-hero-secondary" id="hero-hood-trigger">
+            <span>⚙️ INSPECT ENGINE (HOOD)</span>
+          </button>
+          <button class="btn-hero-secondary" id="hero-doors-trigger">
+            <span>🚪 INSPECT COCKPIT</span>
           </button>
           <button class="btn-hero-secondary" id="explore-aero-trigger">
             <span>ENTER 3D WIND TUNNEL</span>
@@ -457,12 +554,12 @@
         </div>
         <div class="keyboard-shortcuts-pill">
           <span class="kb-title">KEYBOARD SHORTCUTS:</span>
+          <span class="kb-key">K: Keynote Film</span>
+          <span class="kb-key">H: Open/Close Hood</span>
+          <span class="kb-key">D: Open/Close Doors</span>
+          <span class="kb-key">T: Track Run</span>
           <span class="kb-key">SPACE: Floor V8</span>
-          <span class="kb-key">M: Mute/Unmute</span>
-          <span class="kb-key">1: Aero</span>
-          <span class="kb-key">2: Dyno</span>
-          <span class="kb-key">3: Chassis</span>
-          <span class="kb-key">4: Config</span>
+          <span class="kb-key">M: Sound</span>
         </div>
       </div>
 

@@ -1359,10 +1359,383 @@ html, body {
 
 .sys-divider { color: var(--text-tertiary); }
 
+/* ==========================================================================
+   APPLE-TIER KEYNOTE CINEMATIC REVEAL & INTERACTIVE MECHANICAL ACTION DOCK
+   ========================================================================== */
+
+/* Top Navigation Keynote CTA Pill */
+.film-cta-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, rgba(220, 38, 38, 0.25), rgba(0, 82, 204, 0.35));
+  border: 1px solid rgba(220, 38, 38, 0.55);
+  box-shadow: 0 0 16px rgba(220, 38, 38, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  color: #FFF;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: all 0.25s var(--ease-spring);
+}
+
+.film-cta-pill:hover {
+  transform: translateY(-2px) scale(1.03);
+  background: linear-gradient(135deg, rgba(220, 38, 38, 0.45), rgba(0, 82, 204, 0.55));
+  box-shadow: 0 0 24px rgba(220, 38, 38, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  border-color: #EF4444;
+}
+
+.play-triangle {
+  font-size: 0.7rem;
+  color: #EF4444;
+}
+
+.badge-live {
+  background: #DC2626;
+  color: #FFF;
+  font-size: 0.58rem;
+  font-weight: 900;
+  padding: 1px 6px;
+  border-radius: 9999px;
+  letter-spacing: 0.1em;
+  animation: pulse-live 1.8s infinite;
+}
+
+@keyframes pulse-live {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(0.92); }
+}
+
+/* Floating Interactive Mechanical Action Dock */
+.interactive-action-dock {
+  position: absolute;
+  bottom: 2.2rem;
+  right: 2.2rem;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--bg-card-elevated);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid var(--border-specular);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7), 0 0 24px rgba(0, 82, 204, 0.15);
+  padding: 0.45rem 0.65rem;
+  border-radius: 9999px;
+  transition: all 0.3s var(--ease-spring);
+}
+
+.dock-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid transparent;
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  padding: 0.45rem 0.85rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.dock-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+  color: #FFF;
+}
+
+.dock-btn.active {
+  background: linear-gradient(135deg, rgba(0, 82, 204, 0.45), rgba(220, 38, 38, 0.45));
+  border-color: var(--border-accent-blue);
+  box-shadow: 0 0 14px rgba(0, 82, 204, 0.5);
+  color: #FFF;
+}
+
+.dock-icon {
+  font-size: 0.85rem;
+}
+
+.dock-divider {
+  width: 1px;
+  height: 22px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* Apple Keynote Film Controller HUD */
+.cinematic-film-hud {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(120%);
+  width: 90%;
+  max-width: 960px;
+  z-index: 60;
+  background: rgba(8, 11, 18, 0.94);
+  backdrop-filter: blur(32px);
+  -webkit-backdrop-filter: blur(32px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.85), 0 0 32px rgba(220, 38, 38, 0.25);
+  border-radius: 20px;
+  padding: 1.25rem 1.6rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.45s var(--ease-spring);
+}
+
+.cinematic-film-hud.active {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.film-hud-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.9rem;
+}
+
+.film-title-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.film-tag {
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  color: var(--venom-red);
+  letter-spacing: 0.12em;
+  font-weight: 700;
+}
+
+.film-scene-name {
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #FFF;
+  letter-spacing: 0.04em;
+}
+
+.film-close-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.film-close-btn:hover {
+  background: #DC2626;
+  color: #FFF;
+  border-color: #EF4444;
+}
+
+/* Timeline Track & Scrubber */
+.film-timeline-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.85rem;
+}
+
+.film-playback-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #DC2626;
+  border: none;
+  color: #FFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  cursor: pointer;
+  box-shadow: 0 0 16px rgba(220, 38, 38, 0.5);
+  transition: all 0.2s var(--ease-spring);
+  flex-shrink: 0;
+}
+
+.film-playback-btn:hover {
+  transform: scale(1.08);
+  background: #EF4444;
+}
+
+.timeline-track {
+  position: relative;
+  flex: 1;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;
+  cursor: pointer;
+}
+
+.timeline-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #0052CC, #DC2626);
+  border-radius: 9999px;
+  box-shadow: 0 0 10px rgba(220, 38, 38, 0.6);
+  transition: width 0.05s linear;
+}
+
+.timeline-marker {
+  position: absolute;
+  top: -4px;
+  width: 3px;
+  height: 16px;
+  background: rgba(255, 255, 255, 0.45);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.timeline-marker:hover {
+  background: #FFF;
+  width: 5px;
+}
+
+.timeline-time {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  min-width: 90px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* Scene Jump Chips */
+.film-scene-chips {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.scene-chip {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.scene-chip:hover {
+  background: rgba(255, 255, 255, 0.14);
+  color: #FFF;
+}
+
+.scene-chip.active {
+  background: rgba(0, 82, 204, 0.35);
+  border-color: #38BDF8;
+  color: #FFF;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.35);
+}
+
+/* Floating 3D Mechanical Callout Badges */
+.callout-badge-card {
+  position: absolute;
+  z-index: 45;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(12px) scale(0.96);
+  transition: all 0.4s var(--ease-spring);
+}
+
+.callout-badge-card.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+#engine-callout-card {
+  top: 15%;
+  right: 6%;
+  max-width: 360px;
+}
+
+#cockpit-callout-card {
+  top: 18%;
+  left: 6%;
+  max-width: 360px;
+}
+
+.callout-inner {
+  background: rgba(12, 16, 26, 0.88);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.7), 0 0 20px rgba(0, 82, 204, 0.2);
+  border-radius: 14px;
+  padding: 1.1rem 1.3rem;
+}
+
+.callout-tag {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: #38BDF8;
+  letter-spacing: 0.14em;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.callout-heading {
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: #FFF;
+  letter-spacing: 0.03em;
+  margin-bottom: 0.35rem;
+}
+
+.callout-body {
+  font-size: 0.76rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+  margin-bottom: 0.5rem;
+}
+
+.callout-stats {
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  color: #F59E0B;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 0.4rem;
+}
+
 /* Responsive Adjustments */
 @media (max-width: 900px) {
   .nav-links { display: none; }
   .mode-panel { padding: 5rem 1rem 1rem; }
   .hero-content-card, .motion-hud-card { max-width: 100%; padding: 1.5rem; }
   .camera-presets-pill { display: none; }
+  .interactive-action-dock {
+    bottom: 1rem;
+    right: 50%;
+    transform: translateX(50%);
+    width: 94%;
+    justify-content: center;
+    overflow-x: auto;
+  }
+  .callout-badge-card { display: none; }
 }
