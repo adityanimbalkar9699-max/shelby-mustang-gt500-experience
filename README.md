@@ -47,6 +47,19 @@ This application is an **Apple-grade, real-time 3D WebGL automotive showcase & p
 
 ---
 
+## ☀️ UI/UX Pro Max Multi-Environment Studio Lighting
+Bans gloomy, murky pitch-black voids in favor of radiant, crystal-clear luxury atmospheres:
+1. **Apple Keynote Luminary Gallery (Daylight Showroom)**:
+   - Default high-key architectural studio with soft diffused overhead softboxes and natural skylight fill.
+   - Polished platinum alabaster turntable floor with realistic soft contact reflections.
+   - High-contrast, razor-sharp typography and crystal-clear vehicle lacquer reflections.
+2. **Sunset Apex Speedway (Golden Hour Cinema)**:
+   - Warm amber, coral, and gold sky gradient with low-angle sunlight creating dramatic rim lighting across the body panels.
+3. **Midnight Carbon Laser Studio**:
+   - High-contrast midnight surfaces accented by vibrant electric cyan and venom red laser light bars.
+
+---
+
 ## 🌪️ The Three 3D Visual Motion Graphics
 
 ### 1. Motion Graphic 01: 3D Supersonic Wind Tunnel Particle Field
@@ -76,6 +89,7 @@ This application is an **Apple-grade, real-time 3D WebGL automotive showcase & p
 ## ⌨️ Keyboard Shortcuts
 | Key | Action |
 | :--- | :--- |
+| `[E]` | Cycle Studio Atmosphere (Luminary Gallery / Sunset Apex / Midnight Carbon) |
 | `[K]` | Play / Exit Apple Keynote 3D Cinematic Reveal Film |
 | `[H]` | Open / Close Hood (Reveal 5.2L Supercharged V8) |
 | `[D]` | Open / Close Doors (Reveal Bespoke Cockpit) |

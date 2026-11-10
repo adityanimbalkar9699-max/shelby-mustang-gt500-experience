@@ -34,6 +34,245 @@
   --ease-sharp: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* ==========================================================================
+   UI/UX PRO MAX MULTI-ENVIRONMENT THEME ENGINE (APPLE LUMINARY & SUNSET)
+   ========================================================================== */
+
+/* 1. APPLE KEYNOTE LUMINARY GALLERY (PRISTINE ARCHITECTURAL DAYLIGHT) */
+body.theme-luminary {
+  --bg-canvas: #EDF2F7;
+  --bg-card-surface: rgba(255, 255, 255, 0.92);
+  --bg-card-elevated: #FFFFFF;
+  --bg-glass: rgba(248, 250, 252, 0.88);
+  
+  --border-subtle: rgba(15, 23, 42, 0.1);
+  --border-specular: rgba(255, 255, 255, 0.98);
+  
+  --text-primary: #0F172A;
+  --text-secondary: #334155;
+  --text-tertiary: #64748B;
+  
+  background-color: var(--bg-canvas);
+  color: var(--text-primary);
+}
+
+body.theme-luminary .luxury-nav {
+  background: rgba(255, 255, 255, 0.85);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+body.theme-luminary .brand-title {
+  color: #0F172A;
+}
+
+body.theme-luminary .brand-subtitle {
+  color: #64748B;
+}
+
+body.theme-luminary .nav-mode-btn {
+  color: #475569;
+}
+
+body.theme-luminary .nav-mode-btn:hover {
+  color: #0F172A;
+}
+
+body.theme-luminary .nav-mode-btn.active {
+  color: #0052CC;
+  border-bottom-color: #0052CC;
+}
+
+body.theme-luminary .hero-content-card,
+body.theme-luminary .motion-hud-card {
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
+  color: #0F172A;
+}
+
+body.theme-luminary .hero-title-light {
+  color: #0F172A;
+}
+
+body.theme-luminary .hero-title-bold {
+  background: linear-gradient(135deg, #0F172A 0%, #0052CC 60%, #DC2626 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+body.theme-luminary .hero-description {
+  color: #334155;
+}
+
+body.theme-luminary .stat-card {
+  background: #F8FAFC;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+body.theme-luminary .stat-value {
+  color: #0F172A;
+}
+
+body.theme-luminary .stat-label {
+  color: #64748B;
+}
+
+body.theme-luminary .camera-presets-pill,
+body.theme-luminary .interactive-action-dock {
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.1);
+}
+
+body.theme-luminary .cam-btn,
+body.theme-luminary .dock-btn {
+  color: #334155;
+}
+
+body.theme-luminary .cam-btn:hover,
+body.theme-luminary .dock-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: #0F172A;
+}
+
+body.theme-luminary .cam-btn.active,
+body.theme-luminary .dock-btn.active {
+  background: linear-gradient(135deg, #0052CC, #00388A);
+  color: #FFF;
+}
+
+body.theme-luminary .hud-main-title {
+  color: #0F172A;
+}
+
+body.theme-luminary .hud-body-text {
+  color: #334155;
+}
+
+body.theme-luminary .t-box,
+body.theme-luminary .gauge-card,
+body.theme-luminary .dyno-meters-card,
+body.theme-luminary .track-card,
+body.theme-luminary .friction-card,
+body.theme-luminary .corner-pod {
+  background: #F8FAFC;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+body.theme-luminary .t-data,
+body.theme-luminary .current-rpm-number,
+body.theme-luminary .m-val {
+  color: #0F172A;
+}
+
+body.theme-luminary .callout-inner {
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.12);
+}
+
+body.theme-luminary .callout-heading {
+  color: #0F172A;
+}
+
+body.theme-luminary .callout-body {
+  color: #334155;
+}
+
+body.theme-luminary .cinematic-film-hud {
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.15);
+}
+
+body.theme-luminary .film-scene-name {
+  color: #0F172A;
+}
+
+body.theme-luminary .timeline-track {
+  background: rgba(15, 23, 42, 0.12);
+}
+
+body.theme-luminary .scene-chip {
+  background: rgba(15, 23, 42, 0.05);
+  border-color: rgba(15, 23, 42, 0.08);
+  color: #334155;
+}
+
+body.theme-luminary .scene-chip.active {
+  background: #0052CC;
+  color: #FFF;
+}
+
+body.theme-luminary .carbon-texture,
+body.theme-luminary .noise-overlay {
+  opacity: 0.04;
+}
+
+/* 2. SUNSET APEX SPEEDWAY THEME (WARM GOLDEN HOUR) */
+body.theme-sunset {
+  --bg-canvas: #22141E;
+  --bg-card-surface: rgba(36, 20, 30, 0.88);
+  --bg-card-elevated: rgba(48, 26, 40, 0.94);
+  --bg-glass: rgba(30, 16, 26, 0.85);
+  
+  --text-primary: #FFF1F2;
+  --text-secondary: #FDA4AF;
+  --text-tertiary: #FB7185;
+  
+  background-color: var(--bg-canvas);
+  color: var(--text-primary);
+}
+
+/* Atmosphere Selector Pill in Navigation */
+.lighting-environment-selector {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--border-subtle);
+  border-radius: 9999px;
+  padding: 2px;
+  gap: 2px;
+}
+
+body.theme-obsidian .lighting-environment-selector {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.env-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 0.35rem 0.65rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.env-btn:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.env-btn.active {
+  background: #FFF;
+  color: #0F172A;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+body.theme-obsidian .env-btn.active {
+  background: linear-gradient(135deg, #0052CC, #DC2626);
+  color: #FFF;
+  box-shadow: 0 0 12px rgba(0, 82, 204, 0.5);
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;

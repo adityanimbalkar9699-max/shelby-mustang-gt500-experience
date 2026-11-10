@@ -20,7 +20,7 @@
     }
   </script>
 </head>
-<body class="theme-obsidian">
+<body class="theme-luminary">
   <!-- Subtle ambient noise & carbon texture overlays -->
   <div id="noise-overlay" class="noise-overlay"></div>
   <div class="carbon-texture"></div>
@@ -60,6 +60,21 @@
       </nav>
 
       <div class="nav-actions">
+        <!-- Atmosphere & Studio Lighting Selector -->
+        <div class="lighting-environment-selector" id="env-selector">
+          <button class="env-btn active" data-env="luminary" title="Apple Keynote Luminary Gallery (Daylight Showroom)">
+            <span class="env-icon">☀️</span>
+            <span>LUMINARY</span>
+          </button>
+          <button class="env-btn" data-env="sunset" title="Sunset Apex Speedway (Golden Hour)">
+            <span class="env-icon">🌅</span>
+            <span>SUNSET</span>
+          </button>
+          <button class="env-btn" data-env="midnight" title="Midnight Carbon Laser Studio">
+            <span class="env-icon">🌌</span>
+            <span>MIDNIGHT</span>
+          </button>
+        </div>
         <button id="cinematic-film-btn" class="film-cta-pill" title="Watch Apple-Style 3D Cinematic Reveal Video">
           <span class="play-triangle">▶</span>
           <span>KEYNOTE REVEAL</span>
@@ -130,6 +145,11 @@
         <button class="dock-btn" id="dock-btn-rev" title="Floor Predator V8 Throttle with Sound & 3D Torque">
           <span class="dock-icon">⚡</span>
           <span class="dock-label">FLOOR V8</span>
+        </button>
+        <div class="dock-divider"></div>
+        <button class="dock-btn" id="dock-btn-env" title="Cycle Studio Atmosphere: Luminary Gallery / Sunset / Midnight">
+          <span class="dock-icon">☀️</span>
+          <span class="dock-label" id="dock-env-label">LUMINARY</span>
         </button>
       </div>
 
@@ -554,6 +574,7 @@
         </div>
         <div class="keyboard-shortcuts-pill">
           <span class="kb-title">KEYBOARD SHORTCUTS:</span>
+          <span class="kb-key">E: Atmosphere (Luminary/Sunset/Night)</span>
           <span class="kb-key">K: Keynote Film</span>
           <span class="kb-key">H: Open/Close Hood</span>
           <span class="kb-key">D: Open/Close Doors</span>

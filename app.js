@@ -220,6 +220,7 @@ class Shelby3DApp {
 
     // Modes & States
     this.activeMode = 'hero';
+    this.currentEnvironment = 'luminary'; // Default to Apple Keynote Luminary Gallery (Daylight Showroom)
     this.currentPaintColor = 0x0A0D14; // Default Shadow Obsidian Black
     this.currentRPM = 850;
     this.targetRPM = 850;
@@ -292,8 +293,9 @@ class Shelby3DApp {
 
   initScene() {
     this.scene = new THREE.Scene();
-    this.scene.background = new THREE.Color(0x06070a);
-    this.scene.fog = new THREE.FogExp2(0x06070a, 0.026);
+    // Default to Apple Keynote Luminary Gallery (Daylight Showroom)
+    this.scene.background = new THREE.Color(0xEDF2F7);
+    this.scene.fog = new THREE.FogExp2(0xEDF2F7, 0.012);
 
     const width = this.container.clientWidth;
     const height = this.container.clientHeight;
@@ -334,12 +336,12 @@ class Shelby3DApp {
 
   initLighting() {
     // 1. Soft Overhead Ambient Studio Light
-    const hemiLight = new THREE.HemisphereLight(0xffffff, 0x090c14, 0.95);
-    this.scene.add(hemiLight);
+    this.hemiLight = new THREE.HemisphereLight(0xffffff, 0xdbeafe, 1.4);
+    this.scene.add(this.hemiLight);
 
-    // 2. Key Spotlight with High-Res Contact Shadows
-    this.keyLight = new THREE.DirectionalLight(0xffffff, 3.4);
-    this.keyLight.position.set(7, 11, 8);
+    // 2. Key Directional Spotlight with High-Res Contact Shadows
+    this.keyLight = new THREE.DirectionalLight(0xffffff, 3.8);
+    this.keyLight.position.set(8, 14, 9);
     this.keyLight.castShadow = true;
     this.keyLight.shadow.mapSize.width = 2048;
     this.keyLight.shadow.mapSize.height = 2048;
@@ -348,17 +350,22 @@ class Shelby3DApp {
     this.keyLight.shadow.bias = -0.0004;
     this.scene.add(this.keyLight);
 
-    // 3. Cool Cobalt Rim / Silhouette Kicker Light
-    const rimLight = new THREE.DirectionalLight(0x38bdf8, 3.6);
-    rimLight.position.set(-8, 6, -8);
-    this.scene.add(rimLight);
+    // 3. Cool Rim / Silhouette Kicker Light
+    this.rimLight = new THREE.DirectionalLight(0x38bdf8, 2.2);
+    this.rimLight.position.set(-8, 6, -8);
+    this.scene.add(this.rimLight);
 
-    // 4. Undercarriage Ground Accent Neon
+    // 4. Fill Softbox Light (Opposite side)
+    this.fillLight = new THREE.DirectionalLight(0xf8fafc, 1.6);
+    this.fillLight.position.set(-9, 10, 5);
+    this.scene.add(this.fillLight);
+
+    // 5. Undercarriage Ground Accent Neon
     this.underGlow = new THREE.PointLight(0x0052cc, 2.8, 8);
     this.underGlow.position.set(0, 0.18, 0);
     this.scene.add(this.underGlow);
 
-    // 5. Headlight Projector Cones in 3D
+    // 6. Headlight Projector Cones in 3D
     this.headlightL = new THREE.SpotLight(0xfff5e6, 0, 22, Math.PI / 6, 0.4);
     this.headlightL.position.set(-0.65, 0.65, 2.4);
     this.headlightL.target.position.set(-0.65, 0, 16);
@@ -373,21 +380,26 @@ class Shelby3DApp {
   }
 
   initStudioFloor() {
-    // Turntable Platform
+    // Turntable Platform (Apple Luminary Gallery Platinum Floor)
     const floorGeo = new THREE.CylinderGeometry(8.5, 8.8, 0.22, 64);
-    const floorMat = new THREE.MeshStandardMaterial({
-      color: 0x0a0d14,
+    this.platformMat = new THREE.MeshStandardMaterial({
+      color: 0xF1F5F9,
       roughness: 0.22,
-      metalness: 0.85
+      metalness: 0.65
     });
-    this.turntablePlatform = new THREE.Mesh(floorGeo, floorMat);
+    this.turntablePlatform = new THREE.Mesh(floorGeo, this.platformMat);
     this.turntablePlatform.position.y = -0.11;
     this.turntablePlatform.receiveShadow = true;
     this.scene.add(this.turntablePlatform);
 
     // Subtle Concentric Radial Precision Markers
     const ringGeo = new THREE.RingGeometry(8.0, 8.12, 64);
-    const ringMat = new THREE.MeshBasicMaterial({ color: 0x1e293b, side: THREE.DoubleSide });
+    const ringMat = new THREE.MeshBasicMaterial({ color: 0x94A3B8, side: THREE.DoubleSide });
+    const ring = new THREE.Mesh(ringGeo, ringMat);
+    ring.rotation.x = -Math.PI / 2;
+    ring.position.y = 0.01;
+    this.turntablePlatform.add(ring);
+  }
     const ring = new THREE.Mesh(ringGeo, ringMat);
     ring.rotation.x = -Math.PI / 2;
     ring.position.y = 0.01;
@@ -1121,9 +1133,133 @@ class Shelby3DApp {
   }
 
   // ==========================================================================
+  // MULTI-ENVIRONMENT STUDIO LIGHTING DIRECTOR (UI/UX PRO MAX STANDARD)
+  // ==========================================================================
+  setLightingEnvironment(envName) {
+    this.currentEnvironment = envName;
+    document.body.className = `theme-${envName}`;
+
+    document.querySelectorAll('.env-btn').forEach((b) => {
+      b.classList.toggle('active', b.getAttribute('data-env') === envName);
+    });
+
+    const dockEnvLabel = document.getElementById('dock-env-label');
+    if (dockEnvLabel) {
+      dockEnvLabel.textContent = envName.toUpperCase();
+    }
+
+    if (envName === 'luminary') {
+      // ☀️ Apple Keynote Luminary Gallery (Daylight Showroom - Crystal-Clear Visibility)
+      this.scene.background.setHex(0xEDF2F7);
+      this.scene.fog.color.setHex(0xEDF2F7);
+      this.scene.fog.density = 0.012;
+
+      if (this.hemiLight) {
+        this.hemiLight.color.setHex(0xffffff);
+        this.hemiLight.groundColor.setHex(0xdbeafe);
+        this.hemiLight.intensity = 1.4;
+      }
+      if (this.keyLight) {
+        this.keyLight.color.setHex(0xffffff);
+        this.keyLight.intensity = 3.8;
+      }
+      if (this.fillLight) {
+        this.fillLight.color.setHex(0xf8fafc);
+        this.fillLight.intensity = 1.6;
+      }
+      if (this.rimLight) {
+        this.rimLight.color.setHex(0x38bdf8);
+        this.rimLight.intensity = 2.2;
+      }
+      if (this.platformMat) {
+        this.platformMat.color.setHex(0xF1F5F9);
+        this.platformMat.roughness = 0.22;
+        this.platformMat.metalness = 0.65;
+        this.platformMat.needsUpdate = true;
+      }
+    } else if (envName === 'sunset') {
+      // 🌅 Sunset Apex Speedway (Golden Hour Warmth)
+      this.scene.background.setHex(0x22141E);
+      this.scene.fog.color.setHex(0x22141E);
+      this.scene.fog.density = 0.022;
+
+      if (this.hemiLight) {
+        this.hemiLight.color.setHex(0xFB7185);
+        this.hemiLight.groundColor.setHex(0x38122B);
+        this.hemiLight.intensity = 1.2;
+      }
+      if (this.keyLight) {
+        this.keyLight.color.setHex(0xF97316);
+        this.keyLight.intensity = 4.2;
+      }
+      if (this.fillLight) {
+        this.fillLight.color.setHex(0xFDE047);
+        this.fillLight.intensity = 1.4;
+      }
+      if (this.rimLight) {
+        this.rimLight.color.setHex(0xEC4899);
+        this.rimLight.intensity = 2.8;
+      }
+      if (this.platformMat) {
+        this.platformMat.color.setHex(0x1E121B);
+        this.platformMat.roughness = 0.35;
+        this.platformMat.metalness = 0.75;
+        this.platformMat.needsUpdate = true;
+      }
+    } else if (envName === 'midnight') {
+      // 🌌 Midnight Carbon Laser Studio
+      this.scene.background.setHex(0x06070a);
+      this.scene.fog.color.setHex(0x06070a);
+      this.scene.fog.density = 0.026;
+
+      if (this.hemiLight) {
+        this.hemiLight.color.setHex(0xffffff);
+        this.hemiLight.groundColor.setHex(0x090c14);
+        this.hemiLight.intensity = 0.95;
+      }
+      if (this.keyLight) {
+        this.keyLight.color.setHex(0xffffff);
+        this.keyLight.intensity = 3.2;
+      }
+      if (this.fillLight) {
+        this.fillLight.color.setHex(0x0052cc);
+        this.fillLight.intensity = 0.8;
+      }
+      if (this.rimLight) {
+        this.rimLight.color.setHex(0x38bdf8);
+        this.rimLight.intensity = 3.6;
+      }
+      if (this.platformMat) {
+        this.platformMat.color.setHex(0x0a0d14);
+        this.platformMat.roughness = 0.22;
+        this.platformMat.metalness = 0.85;
+        this.platformMat.needsUpdate = true;
+      }
+    }
+  }
+
+  // ==========================================================================
   // INTERACTIVE DOCK & HERO ACTION BUTTONS
   // ==========================================================================
   initInteractiveDock() {
+    // Atmosphere & Studio Lighting Switcher
+    const envBtns = document.querySelectorAll('.env-btn');
+    envBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const env = btn.getAttribute('data-env');
+        this.setLightingEnvironment(env);
+      });
+    });
+
+    const dockEnvBtn = document.getElementById('dock-btn-env');
+    if (dockEnvBtn) {
+      dockEnvBtn.addEventListener('click', () => {
+        const envs = ['luminary', 'sunset', 'midnight'];
+        const nextIdx = (envs.indexOf(this.currentEnvironment) + 1) % envs.length;
+        this.setLightingEnvironment(envs[nextIdx]);
+      });
+    }
+
     // Dock Buttons
     document.getElementById('dock-btn-film')?.addEventListener('click', () => this.playCinematicReveal());
     document.getElementById('dock-btn-drive')?.addEventListener('click', () => this.toggleTrackRunning());
@@ -1739,6 +1875,11 @@ class Shelby3DApp {
       if (e.key === 'd' || e.key === 'D') this.toggleDoors();
       if (e.key === 't' || e.key === 'T') this.toggleTrackRunning();
       if (e.key === 'k' || e.key === 'K') this.playCinematicReveal();
+      if (e.key === 'e' || e.key === 'E') {
+        const envs = ['luminary', 'sunset', 'midnight'];
+        const nextIdx = (envs.indexOf(this.currentEnvironment) + 1) % envs.length;
+        this.setLightingEnvironment(envs[nextIdx]);
+      }
       if (e.key === '0') document.querySelector('[data-mode="hero"]')?.click();
       if (e.key === '1') document.querySelector('[data-mode="aero"]')?.click();
       if (e.key === '2') document.querySelector('[data-mode="powertrain"]')?.click();
