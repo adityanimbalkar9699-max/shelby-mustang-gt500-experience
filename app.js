@@ -400,11 +400,6 @@ class Shelby3DApp {
     ring.position.y = 0.01;
     this.turntablePlatform.add(ring);
   }
-    const ring = new THREE.Mesh(ringGeo, ringMat);
-    ring.rotation.x = -Math.PI / 2;
-    ring.position.y = 0.01;
-    this.turntablePlatform.add(ring);
-  }
 
   // ==========================================================================
   // HIGH-SPEED ASPHALT RUNWAY & TRACK ENVIRONMENT (ANIMATIC ENGINE)
@@ -1988,6 +1983,10 @@ class Shelby3DApp {
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => {
+    window.shelbyApp = new Shelby3DApp();
+  });
+} else {
   window.shelbyApp = new Shelby3DApp();
-});
+}
