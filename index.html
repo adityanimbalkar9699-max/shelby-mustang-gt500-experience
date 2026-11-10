@@ -81,6 +81,11 @@
           <span>KEYNOTE REVEAL</span>
           <span class="badge-live">3D FILM</span>
         </button>
+        <button id="real-video-btn" class="film-cta-pill real-video-pill" title="Watch Real Cinematic Track Video of the Shelby Mustang">
+          <span class="play-triangle">🎬</span>
+          <span>REAL TRACK VIDEO</span>
+          <span class="badge-live">4K/HD</span>
+        </button>
         <button id="audio-toggle-btn" class="audio-control-pill" title="Toggle V8 & Supercharger Synthesizer">
           <span class="sound-wave-bars">
             <span class="bar bar-1"></span>
@@ -600,6 +605,27 @@
       </div>
     </div>
   </footer>
+
+  <!-- Real 4K/HD Cinematic Video Theater Modal -->
+  <div id="real-video-modal" class="real-video-modal" style="display: none;">
+    <div class="video-modal-backdrop" id="video-modal-close-backdrop"></div>
+    <div class="video-modal-container">
+      <div class="video-modal-header">
+        <div class="video-modal-title-group">
+          <span class="video-modal-badge">OFFICIAL BROADCAST FOOTAGE</span>
+          <h3 class="video-modal-heading">SHELBY MUSTANG GT500 PREDATOR — ON TRACK</h3>
+        </div>
+        <button class="video-modal-close-btn" id="video-modal-close-btn" title="Close Video (Esc)">✕ CLOSE</button>
+      </div>
+      <div class="video-embed-wrapper">
+        <iframe id="real-video-iframe" src="" title="Shelby Mustang GT500 Real Track Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+      <div class="video-modal-footer">
+        <span class="video-telemetry-tag">5.2L SUPERCHARGED V8 • 760 BHP • 625 LB-FT • TREMEC 7-SPEED DUAL-CLUTCH</span>
+        <button class="video-modal-toggle-3d-btn" id="video-modal-toggle-3d-btn">← RETURN TO 3D INTERACTIVE COCKPIT</button>
+      </div>
+    </div>
+  </div>
 
   <!-- Master Application Script (ES Module) -->
   <script type="module" src="app.js"></script>

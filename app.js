@@ -1273,6 +1273,34 @@ class Shelby3DApp {
     document.getElementById('hero-film-trigger')?.addEventListener('click', () => this.playCinematicReveal());
     document.getElementById('hero-hood-trigger')?.addEventListener('click', () => this.toggleHood());
     document.getElementById('hero-doors-trigger')?.addEventListener('click', () => this.toggleDoors());
+
+    // Real 4K/HD Video Theater Modal Handlers
+    document.getElementById('real-video-btn')?.addEventListener('click', () => this.openRealVideoModal());
+    document.getElementById('video-modal-close-btn')?.addEventListener('click', () => this.closeRealVideoModal());
+    document.getElementById('video-modal-close-backdrop')?.addEventListener('click', () => this.closeRealVideoModal());
+    document.getElementById('video-modal-toggle-3d-btn')?.addEventListener('click', () => this.closeRealVideoModal());
+  }
+
+  openRealVideoModal() {
+    const modal = document.getElementById('real-video-modal');
+    const iframe = document.getElementById('real-video-iframe');
+    if (modal) {
+      modal.style.display = 'flex';
+      if (iframe && (!iframe.src || !iframe.src.includes('embed'))) {
+        iframe.src = 'https://www.youtube-nocookie.com/embed/BNGcwvW6ZLg?autoplay=1&mute=0&controls=1&rel=0';
+      }
+    }
+  }
+
+  closeRealVideoModal() {
+    const modal = document.getElementById('real-video-modal');
+    const iframe = document.getElementById('real-video-iframe');
+    if (modal) {
+      modal.style.display = 'none';
+      if (iframe) {
+        iframe.src = 'about:blank';
+      }
+    }
   }
 
   initCinematicKeynote() {
@@ -1870,6 +1898,8 @@ class Shelby3DApp {
       if (e.key === 'd' || e.key === 'D') this.toggleDoors();
       if (e.key === 't' || e.key === 'T') this.toggleTrackRunning();
       if (e.key === 'k' || e.key === 'K') this.playCinematicReveal();
+      if (e.key === 'v' || e.key === 'V') this.openRealVideoModal();
+      if (e.key === 'Escape') this.closeRealVideoModal();
       if (e.key === 'e' || e.key === 'E') {
         const envs = ['luminary', 'sunset', 'midnight'];
         const nextIdx = (envs.indexOf(this.currentEnvironment) + 1) % envs.length;

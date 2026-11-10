@@ -79,7 +79,12 @@ const requiredIds = [
   'cockpit-callout-card',
   // UI/UX Pro Max Atmosphere & Lighting Selector
   'env-selector',
-  'dock-btn-env'
+  'dock-btn-env',
+  // Real 4K/HD Cinematic Video Theater
+  'real-video-btn',
+  'real-video-modal',
+  'real-video-iframe',
+  'video-modal-close-btn'
 ];
 
 requiredIds.forEach((id) => {
@@ -114,6 +119,7 @@ assert(jsContent.includes('this.roadGroup'), 'JS creates dynamic streaming track
 assert(jsContent.includes('playMechanicalSound'), 'Audio engine implements mechanical sound effects.');
 assert(jsContent.includes('setLightingEnvironment'), 'JS implements UI/UX Pro Max setLightingEnvironment().');
 assert(jsContent.includes('currentEnvironment'), 'JS tracks active lighting environment.');
+assert(jsContent.includes('openRealVideoModal'), 'JS implements openRealVideoModal() method.');
 
 // 8. Validate CSS tokens and Apple luxury aesthetic
 const cssContent = fs.readFileSync(path.join(projectDir, 'styles.css'), 'utf-8');
@@ -126,6 +132,7 @@ assert(cssContent.includes('.cinematic-film-hud'), 'CSS styles keynote film time
 assert(cssContent.includes('.callout-badge-card'), 'CSS styles 3D mechanical callout cards.');
 assert(cssContent.includes('theme-luminary'), 'CSS defines UI/UX Pro Max theme-luminary tokens.');
 assert(cssContent.includes('.lighting-environment-selector'), 'CSS styles lighting atmosphere selector.');
+assert(cssContent.includes('.real-video-modal'), 'CSS styles real 4K/HD video theater modal.');
 assert(htmlContent.includes('class="theme-luminary"'), 'HTML sets theme-luminary (Daylight Showroom) by default.');
 
 console.log(`\n========================================`);
