@@ -84,7 +84,19 @@ const requiredIds = [
   'real-video-btn',
   'real-video-modal',
   'real-video-iframe',
-  'video-modal-close-btn'
+  'video-modal-close-btn',
+  // Authentic Real Physical Car Showcase
+  'real-car-stage',
+  'layer-real-exterior',
+  'layer-real-bonnet',
+  'layer-real-cockpit',
+  'layer-real-rear',
+  'btn-real-exterior',
+  'btn-real-bonnet',
+  'btn-real-cockpit',
+  'btn-real-rear',
+  'pill-real-car-mode',
+  'pill-3d-mesh-mode'
 ];
 
 requiredIds.forEach((id) => {
@@ -120,6 +132,8 @@ assert(jsContent.includes('playMechanicalSound'), 'Audio engine implements mecha
 assert(jsContent.includes('setLightingEnvironment'), 'JS implements UI/UX Pro Max setLightingEnvironment().');
 assert(jsContent.includes('currentEnvironment'), 'JS tracks active lighting environment.');
 assert(jsContent.includes('openRealVideoModal'), 'JS implements openRealVideoModal() method.');
+assert(jsContent.includes('initRealCarShowcase'), 'JS implements initRealCarShowcase() for authentic physical car.');
+assert(jsContent.includes('switchRealCarView'), 'JS implements switchRealCarView() for real mechanical cutaways.');
 
 // 8. Validate CSS tokens and Apple luxury aesthetic
 const cssContent = fs.readFileSync(path.join(projectDir, 'styles.css'), 'utf-8');
@@ -133,6 +147,8 @@ assert(cssContent.includes('.callout-badge-card'), 'CSS styles 3D mechanical cal
 assert(cssContent.includes('theme-luminary'), 'CSS defines UI/UX Pro Max theme-luminary tokens.');
 assert(cssContent.includes('.lighting-environment-selector'), 'CSS styles lighting atmosphere selector.');
 assert(cssContent.includes('.real-video-modal'), 'CSS styles real 4K/HD video theater modal.');
+assert(cssContent.includes('.real-car-stage'), 'CSS styles authentic real physical car stage.');
+assert(cssContent.includes('.real-car-viewport'), 'CSS styles real car viewport.');
 assert(htmlContent.includes('class="theme-luminary"'), 'HTML sets theme-luminary (Daylight Showroom) by default.');
 
 console.log(`\n========================================`);

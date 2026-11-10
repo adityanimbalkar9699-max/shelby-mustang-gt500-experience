@@ -282,6 +282,10 @@ class Shelby3DApp {
     this.initCarSystem();
     this.initModeNavigation();
     this.initInteractiveDock();
+
+    // Real Car Showcase Navigation Handlers
+    this.initRealCarShowcase();
+
     this.initCinematicKeynote();
     this.initDynoGauges();
     this.initChassisCircuits();
@@ -2010,6 +2014,65 @@ class Shelby3DApp {
 
     // Render WebGL Scene
     this.renderer.render(this.scene, this.camera);
+  }
+
+  // ==========================================================================
+  // REAL PHYSICAL CAR SHOWCASE (AUTHENTIC PHOTOGRAPHY & MECHANICAL CUTAWAYS)
+  // ==========================================================================
+  initRealCarShowcase() {
+    const realBtns = document.querySelectorAll('.real-dock-btn[data-real]');
+    realBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const targetView = btn.getAttribute('data-real');
+        this.switchRealCarView(targetView);
+      });
+    });
+
+    // Top Mode Toggle Bar
+    const pillReal = document.getElementById('pill-real-car-mode');
+    const pill3D = document.getElementById('pill-3d-mesh-mode');
+    const realStage = document.getElementById('real-car-stage');
+
+    pillReal?.addEventListener('click', () => {
+      pillReal.classList.add('active');
+      pill3D?.classList.remove('active');
+      realStage?.classList.remove('hidden-stage');
+    });
+
+    pill3D?.addEventListener('click', () => {
+      pill3D.classList.add('active');
+      pillReal?.classList.remove('active');
+      realStage?.classList.add('hidden-stage');
+    });
+
+    document.getElementById('btn-real-video-dock')?.addEventListener('click', () => {
+      this.openRealVideoModal();
+    });
+  }
+
+  switchRealCarView(view) {
+    if (view === 'video') {
+      this.openRealVideoModal();
+      return;
+    }
+
+    // Play tactile mechanical latch sound
+    audioEngine.playMechanicalSound('latch');
+
+    // Update dock buttons
+    document.querySelectorAll('.real-dock-btn[data-real]').forEach((btn) => {
+      btn.classList.toggle('active', btn.getAttribute('data-real') === view);
+    });
+
+    // Update layers
+    document.querySelectorAll('.real-car-layer').forEach((layer) => {
+      layer.classList.remove('active');
+    });
+
+    const targetLayer = document.getElementById('layer-real-' + view);
+    if (targetLayer) {
+      targetLayer.classList.add('active');
+    }
   }
 }
 

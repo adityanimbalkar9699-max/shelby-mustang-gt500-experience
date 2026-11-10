@@ -102,6 +102,98 @@
 
   <!-- MASTER FULL-VIEWPORT 3D WEBGL STAGE -->
   <main class="master-3d-experience">
+
+  <!-- MASTER REAL PHYSICAL CAR SHOWCASE (Authentic Photography & Real Mechanical Reveal) -->
+  <section id="real-car-stage" class="real-car-stage active">
+    <!-- Top Mode Switcher Bar -->
+    <div class="real-vs-3d-bar">
+      <button class="mode-toggle-pill active" id="pill-real-car-mode" title="View Authentic Physical Shelby Mustang">
+        <span class="pill-dot"></span>
+        <span>📸 REAL PHYSICAL MUSTANG (AUTHENTIC)</span>
+      </button>
+      <button class="mode-toggle-pill" id="pill-3d-mesh-mode" title="Switch to Three.js 3D CAD Mesh">
+        <span class="pill-icon">🎮</span>
+        <span>SWITCH TO 3D CAD MODEL</span>
+      </button>
+    </div>
+
+    <div class="real-car-viewport" id="real-viewport">
+      <!-- Layer 1: Real Physical Exterior (Coupe Front 3/4) -->
+      <div class="real-car-layer active" id="layer-real-exterior">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/8e/2020_Ford_Mustang_Shelby_GT500_Coupe%2C_Cleveland_Auto_Show.jpg" alt="Real Shelby Mustang GT500 Physical Exterior" class="real-car-img" loading="eager">
+        <div class="real-car-caption-overlay">
+          <span class="real-badge">REAL PHYSICAL VEHICLE</span>
+          <h2 class="real-title">2020 SHELBY MUSTANG GT500 PREDATOR</h2>
+          <p class="real-desc">Hand-built in Flat Rock, Michigan. 5.2L Supercharged Cross-Plane V8 producing 760 BHP and 625 LB-FT of torque.</p>
+        </div>
+      </div>
+
+      <!-- Layer 2: Real Physical Bonnet Open & 5.2L Supercharged V8 Engine Bay -->
+      <div class="real-car-layer" id="layer-real-bonnet">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/1968_Shelby_GT500_engine.JPG" alt="Real Shelby 5.2L Supercharged V8 Engine Bay" class="real-car-img" id="bonnet-img-elem">
+        <div class="real-car-caption-overlay">
+          <span class="real-badge badge-bonnet">BONNET OPEN • MECHANICAL HEART</span>
+          <h2 class="real-title">5.2L SUPERCHARGED "PREDATOR" V8</h2>
+          <p class="real-desc">Inverted Eaton TVS R2650 Roots Supercharger (2.65L displacement). Cross-plane crank, 12 PSI boost, hand-assembled by Ford Performance.</p>
+          <div class="real-engine-badges">
+            <span class="engine-chip">⚡ EATON 2.65L BLOWER</span>
+            <span class="engine-chip">🔥 760 HORSEPOWER</span>
+            <span class="engine-chip">🛠️ SERIALIZED CSM PLAQUE</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Layer 3: Real Physical Doors Open & Recaro Racing Cockpit -->
+      <div class="real-car-layer" id="layer-real-cockpit">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a1/2018_Ford_Mustang_GT_V8_5.0_facelift_Interior.jpg" alt="Real Shelby Cockpit with Recaro Bucket Seats" class="real-car-img">
+        <div class="real-car-caption-overlay">
+          <span class="real-badge badge-cockpit">DOORS OPEN • BESPOKE COCKPIT</span>
+          <h2 class="real-title">TRACK-PACK RECARO COCKPIT</h2>
+          <p class="real-desc">Leather and Alcantara sports bucket seats with embossed Cobra crest. Flat-bottom Alcantara steering wheel, magnesium paddle shifters, and 12-inch digital LCD instrument cluster.</p>
+          <div class="real-engine-badges">
+            <span class="engine-chip">💺 RECARO RACING SEATS</span>
+            <span class="engine-chip">🏎️ MAGNESIUM PADDLES</span>
+            <span class="engine-chip">📊 12" DIGITAL CLUSTER</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Layer 4: Real Physical Rear Aero & Titanium Quad Exhausts -->
+      <div class="real-car-layer" id="layer-real-rear">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/2020_Ford_Mustang_Shelby_GT500_Coupe%2C_Cleveland_Auto_Show_%28Rear%29.jpg" alt="Real Shelby Rear Aero & Exhausts" class="real-car-img">
+        <div class="real-car-caption-overlay">
+          <span class="real-badge badge-rear">AERODYNAMICS & EXHAUST</span>
+          <h2 class="real-title">GT4 CARBON REAR WING & ACTIVE VALVED EXHAUST</h2>
+          <p class="real-desc">Generates 550 lbs of downforce at 180 MPH. Dual 5-inch active-valved quad titanium tips with Track Mode bypass.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Real Car Interactive Mechanical Articulation Dock -->
+    <div class="real-car-nav-dock" id="real-nav-dock">
+      <button class="real-dock-btn active" data-real="exterior" id="btn-real-exterior">
+        <span class="btn-icon">🏎️</span>
+        <span>REAL EXTERIOR</span>
+      </button>
+      <button class="real-dock-btn" data-real="bonnet" id="btn-real-bonnet">
+        <span class="btn-icon">⚡</span>
+        <span>OPEN REAL BONNET (5.2L V8)</span>
+      </button>
+      <button class="real-dock-btn" data-real="cockpit" id="btn-real-cockpit">
+        <span class="btn-icon">💺</span>
+        <span>OPEN REAL DOORS (COCKPIT)</span>
+      </button>
+      <button class="real-dock-btn" data-real="rear" id="btn-real-rear">
+        <span class="btn-icon">🏁</span>
+        <span>REAL REAR & EXHAUST</span>
+      </button>
+      <button class="real-dock-btn btn-highlight" data-real="video" id="btn-real-video-dock">
+        <span class="btn-icon">🎬</span>
+        <span>REAL 4K TRACK VIDEO</span>
+      </button>
+    </div>
+  </section>
+
     <div id="webgl-container" class="webgl-container">
       <canvas id="webgl-canvas"></canvas>
       
